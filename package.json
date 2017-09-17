@@ -1,6 +1,6 @@
 {
   "name": "smartexpress",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "express apis the smart way",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   "scripts": {
     "test": "(npmts)"
   },
-   "devDependencies": {
+  "devDependencies": {
     "tapbundle": "^1.0.13"
   },
   "dependencies": {
