@@ -4,26 +4,36 @@ import { Route } from './smartexpress.classes.route'
 
 import { Objectmap } from 'lik'
 
-export class Server  {
+export class Server {
   expressAppInstance: plugins.express.Application
   expressServerInstance
-  private startedDeferred = plugins.smartq.defer()
-  startedPromise = this.startedDeferred.promise
-
   routeObjectMap = new plugins.lik.Objectmap<Route>()
 
-  constructor() {
+  // do stuff when server is ready
+  private startedDeferred = plugins.smartq.defer()
+  // tslint:disable-next-line:member-ordering
+  startedPromise = this.startedDeferred.promise
+
+
+  constructor () {
     this.expressAppInstance = plugins.express()
+  }
+
+  /**
+   * adds a Route to the Servr
+   */
+  addRouter (routeArg: Route) {
+    this.routeObjectMap.add(routeArg)
   }
 
   /**
    * enables cors policy
    */
-  enableCors() {
+  enableCors () {
     this.expressAppInstance.use(plugins.cors())
   }
 
-  enableForceSsl() {
+  enableForceSsl () {
     this.expressAppInstance.set('forceSSLOptions', {
       enable301Redirects: true,
       trustXFPHeader: true,
@@ -32,11 +42,11 @@ export class Server  {
     this.expressAppInstance.use(plugins.expressForceSsl)
   }
 
-  addRoute(routeArg: Route) {
+  addRoute (routeArg: Route) {
     this.routeObjectMap.add(routeArg)
   }
 
-  async start(port: number) {
+  async start (port: number) {
     let done = plugins.smartq.defer()
     this.expressServerInstance = this.expressAppInstance.listen(port, '0.0.0.0', () => {
       console.log(`pubapi-1 now listening on ${port}!`)
@@ -46,7 +56,7 @@ export class Server  {
     return await done.promise
   }
 
-  async stop() {
+  async stop () {
     this.expressServerInstance.close()
   }
 

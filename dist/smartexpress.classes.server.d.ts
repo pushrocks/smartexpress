@@ -5,10 +5,14 @@ import { Objectmap } from 'lik';
 export declare class Server {
     expressAppInstance: plugins.express.Application;
     expressServerInstance: any;
+    routeObjectMap: Objectmap<Route>;
     private startedDeferred;
     startedPromise: Promise<{}>;
-    routeObjectMap: Objectmap<Route>;
     constructor();
+    /**
+     * adds a Route to the Servr
+     */
+    addRouter(routeArg: Route): void;
     /**
      * enables cors policy
      */
