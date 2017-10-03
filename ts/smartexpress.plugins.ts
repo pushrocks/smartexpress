@@ -4,6 +4,7 @@ import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 import * as express from 'express'
 import * as expressForceSsl from 'express-force-ssl'
+import * as http from 'http'
 import * as lik from 'lik'
 import * as smartq from 'smartq'
 
@@ -12,6 +13,7 @@ export {
   cors,
   express,
   expressForceSsl,
+  http,
   lik,
   smartq
 }

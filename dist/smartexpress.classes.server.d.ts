@@ -1,8 +1,10 @@
+/// <reference types="node" />
 /// <reference types="express" />
 import * as plugins from './smartexpress.plugins';
 import { Route } from './smartexpress.classes.route';
 import { Objectmap } from 'lik';
 export declare class Server {
+    httpServer: plugins.http.Server;
     expressAppInstance: plugins.express.Application;
     expressServerInstance: any;
     routeObjectMap: Objectmap<Route>;
@@ -20,5 +22,6 @@ export declare class Server {
     enableForceSsl(): void;
     addRoute(routeArg: Route): void;
     start(port: number): Promise<{}>;
-    stop(): Promise<void>;
+    addSocketIO(socketArg: any): void;
+    stop(): Promise<{}>;
 }

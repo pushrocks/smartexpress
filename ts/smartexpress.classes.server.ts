@@ -5,6 +5,7 @@ import { Route } from './smartexpress.classes.route'
 import { Objectmap } from 'lik'
 
 export class Server {
+  httpServer: plugins.http.Server
   expressAppInstance: plugins.express.Application
   expressServerInstance
   routeObjectMap = new plugins.lik.Objectmap<Route>()
@@ -14,9 +15,9 @@ export class Server {
   // tslint:disable-next-line:member-ordering
   startedPromise = this.startedDeferred.promise
 
-
   constructor () {
     this.expressAppInstance = plugins.express()
+    this.httpServer = new plugins.http.Server(this.expressAppInstance)
   }
 
   /**
@@ -48,7 +49,7 @@ export class Server {
 
   async start (port: number) {
     let done = plugins.smartq.defer()
-    this.expressServerInstance = this.expressAppInstance.listen(port, '0.0.0.0', () => {
+    this.expressServerInstance = this.httpServer.listen(port, '0.0.0.0', () => {
       console.log(`pubapi-1 now listening on ${port}!`)
       this.startedDeferred.resolve()
       done.resolve()
@@ -56,8 +57,16 @@ export class Server {
     return await done.promise
   }
 
+  addSocketIO (socketArg) {
+    socketArg(this.httpServer)
+  }
+
   async stop () {
-    this.expressServerInstance.close()
+    let done = plugins.smartq.defer()
+    this.httpServer.close(() => {
+      done.resolve()
+    })
+    return await done.promise
   }
 
 }
