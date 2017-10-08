@@ -10,7 +10,8 @@
     "test": "(npmts)"
   },
   "devDependencies": {
-    "tapbundle": "^1.0.13"
+    "tapbundle": "^1.0.13",
+    "vscts": "^1.0.6"
   },
   "dependencies": {
     "@types/express": "^4.0.37",
