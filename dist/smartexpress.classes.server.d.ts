@@ -3,6 +3,7 @@
 import * as plugins from './smartexpress.plugins';
 import { Route } from './smartexpress.classes.route';
 import { Objectmap } from 'lik';
+import { Server as HttpServer } from 'http';
 export declare class Server {
     httpServer: plugins.http.Server;
     expressAppInstance: plugins.express.Application;
@@ -22,6 +23,6 @@ export declare class Server {
     enableForceSsl(): void;
     addRoute(routeArg: Route): void;
     start(port: number): Promise<{}>;
-    addSocketIO(socketArg: any): void;
+    getHttpServer(): HttpServer;
     stop(): Promise<{}>;
 }

@@ -2,7 +2,9 @@ import * as plugins from './smartexpress.plugins'
 
 import { Route } from './smartexpress.classes.route'
 
+// export types
 import { Objectmap } from 'lik'
+import { Server as HttpServer } from 'http'
 
 export class Server {
   httpServer: plugins.http.Server
