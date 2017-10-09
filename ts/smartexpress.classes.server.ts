@@ -57,8 +57,8 @@ export class Server {
     return await done.promise
   }
 
-  addSocketIO (socketArg) {
-    socketArg(this.httpServer)
+  getHttpServer () {
+    return this.httpServer
   }
 
   async stop () {
