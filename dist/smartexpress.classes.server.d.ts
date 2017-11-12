@@ -13,7 +13,7 @@ export declare class Server {
     startedPromise: Promise<{}>;
     constructor();
     /**
-     * adds a Route to the Servr
+     * adds a Route to the Server
      */
     addRouter(routeArg: Route): void;
     /**

@@ -20,7 +20,7 @@ class Server {
         this.httpServer = new plugins.http.Server(this.expressAppInstance);
     }
     /**
-     * adds a Route to the Servr
+     * adds a Route to the Server
      */
     addRouter(routeArg) {
         this.routeObjectMap.add(routeArg);

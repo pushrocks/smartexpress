@@ -23,7 +23,7 @@ export class Server {
   }
 
   /**
-   * adds a Route to the Servr
+   * adds a Route to the Server
    */
   addRouter (routeArg: Route) {
     this.routeObjectMap.add(routeArg)
