@@ -1,5 +1,5 @@
 export interface IHandlerFunction {
-    (requestArg: any, responseCallbackArg: any): void;
+    (requestArg: any, responseArg: any): void;
 }
 export declare class Handler {
     handlerFunction: IHandlerFunction;

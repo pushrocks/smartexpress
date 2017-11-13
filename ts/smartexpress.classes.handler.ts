@@ -1,7 +1,7 @@
 import * as plugins from './smartexpress.plugins'
 
 export interface IHandlerFunction {
-  (requestArg, responseCallbackArg): void
+  (requestArg, responseArg): void
 }
 
 export class Handler {

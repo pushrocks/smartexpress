@@ -8,7 +8,19 @@ export class Route {
     this.routeString = routeStringArg
   }
 
+  /**
+   * add a handler to do something with requests
+   * @param handlerArg
+   */
   addHandler (handlerArg: Handler) {
     this.handler = handlerArg
+  }
+
+  /**
+   * add a express middleware
+   * @param middlewareArg
+   */
+  addExpressMiddleWare (middlewareArg) {
+
   }
 }
