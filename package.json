@@ -10,6 +10,7 @@
     "test": "(npmts)"
   },
   "devDependencies": {
+    "smartrequest": "^1.0.6",
     "tapbundle": "^1.1.8",
     "vscts": "^1.0.9"
   },

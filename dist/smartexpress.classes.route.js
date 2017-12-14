@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const lik_1 = require("lik");
 class Route {
-    constructor(routeStringArg) {
-        this.handler = null;
+    constructor(ServerArg, routeStringArg) {
+        this.handlerObjectMap = new lik_1.Objectmap();
+        this.expressMiddlewareObjectMap = new lik_1.Objectmap();
         this.routeString = routeStringArg;
     }
     /**
@@ -10,14 +12,15 @@ class Route {
      * @param handlerArg
      */
     addHandler(handlerArg) {
-        this.handler = handlerArg;
+        this.handlerObjectMap.add(handlerArg);
     }
     /**
      * add a express middleware
      * @param middlewareArg
      */
     addExpressMiddleWare(middlewareArg) {
+        this.expressMiddlewareObjectMap.add(middlewareArg);
     }
 }
 exports.Route = Route;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic21hcnRleHByZXNzLmNsYXNzZXMucm91dGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi90cy9zbWFydGV4cHJlc3MuY2xhc3Nlcy5yb3V0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUdBO0lBR0UsWUFBWSxjQUFzQjtRQURsQyxZQUFPLEdBQVksSUFBSSxDQUFBO1FBRXJCLElBQUksQ0FBQyxXQUFXLEdBQUcsY0FBYyxDQUFBO0lBQ25DLENBQUM7SUFFRDs7O09BR0c7SUFDSCxVQUFVLENBQUUsVUFBbUI7UUFDN0IsSUFBSSxDQUFDLE9BQU8sR0FBRyxVQUFVLENBQUE7SUFDM0IsQ0FBQztJQUVEOzs7T0FHRztJQUNILG9CQUFvQixDQUFFLGFBQWE7SUFFbkMsQ0FBQztDQUNGO0FBdEJELHNCQXNCQyJ9
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic21hcnRleHByZXNzLmNsYXNzZXMucm91dGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi90cy9zbWFydGV4cHJlc3MuY2xhc3Nlcy5yb3V0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUlBLDZCQUFnQztBQUdoQztJQUtFLFlBQVksU0FBaUIsRUFBQyxjQUFzQjtRQUhwRCxxQkFBZ0IsR0FBRyxJQUFJLGVBQVMsRUFBVyxDQUFBO1FBQzNDLCtCQUEwQixHQUFHLElBQUksZUFBUyxFQUFPLENBQUE7UUFHL0MsSUFBSSxDQUFDLFdBQVcsR0FBRyxjQUFjLENBQUE7SUFDbkMsQ0FBQztJQUVEOzs7T0FHRztJQUNILFVBQVUsQ0FBRSxVQUFtQjtRQUM3QixJQUFJLENBQUMsZ0JBQWdCLENBQUMsR0FBRyxDQUFDLFVBQVUsQ0FBQyxDQUFBO0lBQ3ZDLENBQUM7SUFFRDs7O09BR0c7SUFDSCxvQkFBb0IsQ0FBRSxhQUFhO1FBQ2pDLElBQUksQ0FBQywwQkFBMEIsQ0FBQyxHQUFHLENBQUMsYUFBYSxDQUFDLENBQUE7SUFDcEQsQ0FBQztDQUNGO0FBeEJELHNCQXdCQyJ9

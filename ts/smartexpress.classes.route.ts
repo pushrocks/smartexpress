@@ -1,10 +1,16 @@
 import * as plugins from './smartexpress.plugins'
 import { Handler } from './smartexpress.classes.handler'
+import { Server } from './index';
+
+import { Objectmap } from 'lik';
+import { IRoute as IExpressRoute } from 'express'
 
 export class Route {
   routeString: string
-  handler: Handler = null
-  constructor(routeStringArg: string) {
+  handlerObjectMap = new Objectmap<Handler>()
+  expressMiddlewareObjectMap = new Objectmap<any>()
+  expressRoute: IExpressRoute // will be set to server route on server start
+  constructor(ServerArg: Server,routeStringArg: string) {
     this.routeString = routeStringArg
   }
 
@@ -13,7 +19,7 @@ export class Route {
    * @param handlerArg
    */
   addHandler (handlerArg: Handler) {
-    this.handler = handlerArg
+    this.handlerObjectMap.add(handlerArg)
   }
 
   /**
@@ -21,6 +27,6 @@ export class Route {
    * @param middlewareArg
    */
   addExpressMiddleWare (middlewareArg) {
-
+    this.expressMiddlewareObjectMap.add(middlewareArg)
   }
 }

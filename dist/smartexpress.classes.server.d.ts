@@ -16,10 +16,6 @@ export declare class Server {
     private startedDeferred;
     startedPromise: Promise<{}>;
     constructor(optionsArg: ServerOptions);
-    /**
-     * adds a Route to the Server
-     */
-    addRouter(routeArg: Route): void;
     addRoute(routeArg: Route): void;
     start(port: number): Promise<{}>;
     getHttpServer(): HttpServer;
