@@ -1,6 +1,7 @@
 import * as plugins from './smartexpress.plugins'
 
 import { Route } from './smartexpress.classes.route'
+import { Handler } from './smartexpress.classes.handler'
 
 // export types
 import { Objectmap } from 'lik'
@@ -34,8 +35,13 @@ export class Server {
     Object.assign(this.options, optionsArg)
   }
 
-  addRoute (routeArg: Route) {
-    this.routeObjectMap.add(routeArg)
+  addRoute (routeStringArg: string, handlerArg?: Handler) {
+    let route = new Route(this, routeStringArg)
+    if(handlerArg) {
+      route.addHandler(handlerArg)
+    }
+    this.routeObjectMap.add(route)
+    return route
   }
 
   async start (portArg: number | string = this.options.port) {

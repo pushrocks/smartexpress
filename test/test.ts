@@ -24,12 +24,8 @@ tap.test('should create a valid Server', async () => {
 // ================
 
 tap.test('should create a valid Route', async () => {
-  testRoute = new smartexpress.Route(testServer, '/someroute')
+  testRoute = testServer.addRoute('/someroute')
   expect(testRoute).to.be.instanceof(smartexpress.Route)
-})
-
-tap.test('should accept a new Route', async () => {
-  testServer.addRoute(testRoute)
 })
 
 // ==================
