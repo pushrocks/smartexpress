@@ -7,7 +7,7 @@ import { Server as HttpServer } from 'http';
 export interface ServerOptions {
     cors: boolean;
     forceSsl: boolean;
-    port?: number;
+    port?: number | string;
     defaultAnswer?: string;
 }
 export declare class Server {
@@ -20,7 +20,7 @@ export declare class Server {
     constructor(optionsArg: ServerOptions);
     updateServerOptions(optionsArg: ServerOptions): void;
     addRoute(routeArg: Route): void;
-    start(portArg?: number): Promise<{}>;
+    start(portArg?: number | string): Promise<{}>;
     getHttpServer(): HttpServer;
     stop(): Promise<{}>;
 }

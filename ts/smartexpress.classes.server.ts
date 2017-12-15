@@ -10,7 +10,7 @@ import { express } from './smartexpress.plugins';
 export interface ServerOptions {
   cors: boolean
   forceSsl: boolean
-  port?: number
+  port?: number | string
   defaultAnswer?: string
 }
 
@@ -38,9 +38,13 @@ export class Server {
     this.routeObjectMap.add(routeArg)
   }
 
-  async start (portArg: number = this.options.port) {
+  async start (portArg: number | string = this.options.port) {
     let done = plugins.smartq.defer()
     
+    if(typeof portArg === 'string') {
+      portArg = parseInt(portArg)
+    }
+
     this.expressAppInstance = plugins.express()
     this.httpServer = new plugins.http.Server(this.expressAppInstance)
 
