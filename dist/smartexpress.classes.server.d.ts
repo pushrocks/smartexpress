@@ -7,6 +7,8 @@ import { Server as HttpServer } from 'http';
 export interface ServerOptions {
     cors: boolean;
     forceSsl: boolean;
+    port?: number;
+    defaultAnswer?: string;
 }
 export declare class Server {
     httpServer: plugins.http.Server;
@@ -16,8 +18,9 @@ export declare class Server {
     private startedDeferred;
     startedPromise: Promise<{}>;
     constructor(optionsArg: ServerOptions);
+    updateServerOptions(optionsArg: ServerOptions): void;
     addRoute(routeArg: Route): void;
-    start(port: number): Promise<{}>;
+    start(portArg?: number): Promise<{}>;
     getHttpServer(): HttpServer;
     stop(): Promise<{}>;
 }

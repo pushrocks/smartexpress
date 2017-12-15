@@ -10,6 +10,8 @@ import { express } from './smartexpress.plugins';
 export interface ServerOptions {
   cors: boolean
   forceSsl: boolean
+  port?: number
+  defaultAnswer?: string
 }
 
 export class Server {
@@ -28,11 +30,15 @@ export class Server {
     this.options = optionsArg
   }
 
+  updateServerOptions(optionsArg: ServerOptions) {
+    Object.assign(this.options, optionsArg)
+  }
+
   addRoute (routeArg: Route) {
     this.routeObjectMap.add(routeArg)
   }
 
-  async start (port: number) {
+  async start (portArg: number = this.options.port) {
     let done = plugins.smartq.defer()
     
     this.expressAppInstance = plugins.express()
@@ -82,9 +88,15 @@ export class Server {
       })
     })
 
+    if (this.options.defaultAnswer) {
+      this.expressAppInstance.get('/', (request, response) => {
+        response.send(this.options.defaultAnswer)
+      })
+    }
+
     // finally listen on a port
-    this.httpServer.listen(port, '0.0.0.0', () => {
-      console.log(`pubapi-1 now listening on ${port}!`)
+    this.httpServer.listen(portArg, '0.0.0.0', () => {
+      console.log(`pubapi-1 now listening on ${portArg}!`)
       this.startedDeferred.resolve()
       done.resolve()
     })
