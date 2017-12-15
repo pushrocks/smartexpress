@@ -10,9 +10,9 @@
     "test": "(npmts)"
   },
   "devDependencies": {
-    "smartrequest": "^1.0.6",
-    "tapbundle": "^1.1.8",
-    "vscts": "^1.0.9"
+    "@types/node": "*",
+    "smartrequest": "^1.0.8",
+    "tapbundle": "^1.1.8"
   },
   "dependencies": {
     "@types/express": "^4.0.39",
@@ -20,8 +20,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-force-ssl": "^0.3.2",
-    "lik": "^2.0.1",
-    "smartq": "^1.1.6",
-    "typings-global": "^1.0.23"
+    "lik": "^2.0.2",
+    "smartq": "^1.1.6"
   }
 }
