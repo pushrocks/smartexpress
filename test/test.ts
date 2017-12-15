@@ -57,6 +57,9 @@ tap.test('should start the server allright', async () => {
 // see if a demo request holds up
 tap.test('should issue a request', async (tools) => {
   let response = await smartrequest.post('http://localhost:3000/someroute', {
+    headers: {
+      'X-Forwarded-Proto': 'https'
+    },
     requestBody: {
       'someprop': 'hi'
     }
