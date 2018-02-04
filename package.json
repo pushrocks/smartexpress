@@ -16,10 +16,12 @@
   },
   "dependencies": {
     "@types/express": "^4.0.39",
+    "@types/helmet": "^0.0.37",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "express-force-ssl": "^0.3.2",
+    "helmet": "^3.10.0",
     "lik": "^2.0.2",
     "smartq": "^1.1.6"
   }

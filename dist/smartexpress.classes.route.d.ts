@@ -1,12 +1,12 @@
 /// <reference types="express" />
+import * as plugins from './smartexpress.plugins';
 import { Handler } from './smartexpress.classes.handler';
 import { Server } from './index';
-import { Objectmap } from 'lik';
 import { IRoute as IExpressRoute } from 'express';
 export declare class Route {
     routeString: string;
-    handlerObjectMap: Objectmap<Handler>;
-    expressMiddlewareObjectMap: Objectmap<any>;
+    handlerObjectMap: plugins.lik.Objectmap<Handler>;
+    expressMiddlewareObjectMap: plugins.lik.Objectmap<any>;
     expressRoute: IExpressRoute;
     constructor(ServerArg: Server, routeStringArg: string);
     /**

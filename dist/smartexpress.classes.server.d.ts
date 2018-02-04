@@ -3,8 +3,6 @@
 import * as plugins from './smartexpress.plugins';
 import { Route } from './smartexpress.classes.route';
 import { Handler } from './smartexpress.classes.handler';
-import { Objectmap } from 'lik';
-import { Server as HttpServer } from 'http';
 export interface ServerOptions {
     cors: boolean;
     forceSsl: boolean;
@@ -14,7 +12,7 @@ export interface ServerOptions {
 export declare class Server {
     httpServer: plugins.http.Server;
     expressAppInstance: plugins.express.Application;
-    routeObjectMap: Objectmap<Route>;
+    routeObjectMap: plugins.lik.Objectmap<Route>;
     options: ServerOptions;
     private startedDeferred;
     startedPromise: Promise<{}>;
@@ -22,6 +20,6 @@ export declare class Server {
     updateServerOptions(optionsArg: ServerOptions): void;
     addRoute(routeStringArg: string, handlerArg?: Handler): Route;
     start(portArg?: number | string): Promise<{}>;
-    getHttpServer(): HttpServer;
+    getHttpServer(): plugins.http.Server;
     stop(): Promise<{}>;
 }

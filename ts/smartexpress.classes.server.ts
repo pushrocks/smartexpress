@@ -67,6 +67,9 @@ export class Server {
       this.expressAppInstance.use(plugins.expressForceSsl)
     }
 
+    // helmet
+    this.expressAppInstance.use(plugins.helmet())
+
     // cors
     if (this.options.cors) {
       this.expressAppInstance.use(plugins.cors())
