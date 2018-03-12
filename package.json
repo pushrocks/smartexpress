@@ -1,6 +1,6 @@
 {
   "name": "smartexpress",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "express apis the smart way",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
