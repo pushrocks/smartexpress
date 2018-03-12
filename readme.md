@@ -1,13 +1,16 @@
 # smartexpress
+
 express apis the smart way
 
 ## Availabililty
+
 [![npm](https://pushrocks.gitlab.io/assets/repo-button-npm.svg)](https://www.npmjs.com/package/smartexpress)
 [![git](https://pushrocks.gitlab.io/assets/repo-button-git.svg)](https://GitLab.com/pushrocks/smartexpress)
 [![git](https://pushrocks.gitlab.io/assets/repo-button-mirror.svg)](https://github.com/pushrocks/smartexpress)
 [![docs](https://pushrocks.gitlab.io/assets/repo-button-docs.svg)](https://pushrocks.gitlab.io/smartexpress/)
 
 ## Status for master
+
 [![build status](https://GitLab.com/pushrocks/smartexpress/badges/master/build.svg)](https://GitLab.com/pushrocks/smartexpress/commits/master)
 [![coverage report](https://GitLab.com/pushrocks/smartexpress/badges/master/coverage.svg)](https://GitLab.com/pushrocks/smartexpress/commits/master)
 [![npm downloads per month](https://img.shields.io/npm/dm/smartexpress.svg)](https://www.npmjs.com/package/smartexpress)
@@ -19,11 +22,12 @@ express apis the smart way
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Usage
+
 Use TypeScript for best in class instellisense.
 
 For further information read the linked docs at the top of this README.
 
 > MIT licensed | **&copy;** [Lossless GmbH](https://lossless.gmbh)
-| By using this npm module you agree to our [privacy policy](https://lossless.gmbH/privacy.html)
+> | By using this npm module you agree to our [privacy policy](https://lossless.gmbH/privacy.html)
 
 [![repo-footer](https://pushrocks.gitlab.io/assets/repo-footer.svg)](https://push.rocks)

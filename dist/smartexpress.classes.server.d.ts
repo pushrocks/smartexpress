@@ -9,11 +9,13 @@ export interface ServerOptions {
     port?: number | string;
     defaultAnswer?: string;
 }
+export declare type TServerStatus = 'initiated' | 'running' | 'stopped';
 export declare class Server {
     httpServer: plugins.http.Server;
     expressAppInstance: plugins.express.Application;
     routeObjectMap: plugins.lik.Objectmap<Route>;
     options: ServerOptions;
+    serverStatus: TServerStatus;
     private startedDeferred;
     startedPromise: Promise<{}>;
     constructor(optionsArg: ServerOptions);
