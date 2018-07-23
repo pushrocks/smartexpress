@@ -1,4 +1,4 @@
-import { expect, tap } from 'tapbundle';
+import { expect, tap } from '@pushrocks/tapbundle';
 import * as smartrequest from 'smartrequest';
 
 import * as smartexpress from '../ts/index';

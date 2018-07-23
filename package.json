@@ -1,28 +1,31 @@
 {
-  "name": "smartexpress",
+  "name": "@pushrocks/smartexpress",
   "version": "1.0.21",
+  "private": false,
   "description": "express apis the smart way",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "author": "Lossless GmbH",
   "license": "MIT",
   "scripts": {
-    "test": "(npmts)"
+    "test": "(tsrun test/test.ts)",
+    "build": "(npmts)"
   },
   "devDependencies": {
-    "@types/node": "9.4.7",
-    "smartrequest": "^1.0.8",
-    "tapbundle": "^2.0.0"
+    "@gitzone/tsrun": "^1.1.9",
+    "@pushrocks/smartrequest": "^1.1.12",
+    "@pushrocks/tapbundle": "^3.0.1",
+    "@types/node": "^10.5.2"
   },
   "dependencies": {
-    "@types/express": "^4.11.1",
-    "@types/helmet": "^0.0.37",
-    "body-parser": "^1.18.2",
+    "@pushrocks/lik": "^3.0.1",
+    "@pushrocks/smartpromise": "^2.0.5",
+    "@types/express": "^4.16.0",
+    "@types/helmet": "0.0.38",
+    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "express-force-ssl": "^0.3.2",
-    "helmet": "^3.12.0",
-    "lik": "^2.0.5",
-    "smartq": "^1.1.6"
+    "helmet": "^3.13.0"
   }
 }

@@ -2,7 +2,7 @@ import * as plugins from './smartexpress.plugins';
 import { Handler } from './smartexpress.classes.handler';
 import { Server } from './index';
 
-import { Objectmap } from 'lik';
+import { Objectmap } from '@pushrocks/lik';
 import { IRoute as IExpressRoute } from 'express';
 
 export class Route {

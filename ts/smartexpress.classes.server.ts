@@ -4,7 +4,7 @@ import { Route } from './smartexpress.classes.route';
 import { Handler } from './smartexpress.classes.handler';
 
 // export types
-import { Objectmap } from 'lik';
+import { Objectmap } from '@pushrocks/lik';
 import { Server as HttpServer } from 'http';
 import { express } from './smartexpress.plugins';
 
