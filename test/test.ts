@@ -1,5 +1,5 @@
 import { expect, tap } from '@pushrocks/tapbundle';
-import * as smartrequest from 'smartrequest';
+import * as smartrequest from '@pushrocks/smartrequest';
 
 import * as smartexpress from '../ts/index';
 
@@ -56,7 +56,7 @@ tap.test('should start the server allright', async () => {
 
 // see if a demo request holds up
 tap.test('should issue a request', async tools => {
-  let response = await smartrequest.post('http://localhost:3000/someroute', {
+  let response = await smartrequest.postJson('http://localhost:3000/someroute', {
     headers: {
       'X-Forwarded-Proto': 'https'
     },
