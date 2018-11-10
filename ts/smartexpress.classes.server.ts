@@ -111,7 +111,7 @@ export class Server {
 
     // finally listen on a port
     this.httpServer.listen(portArg, '0.0.0.0', () => {
-      console.log(`pubapi-1 now listening on ${portArg}!`);
+      console.log(`now listening on ${portArg}!`);
       this.startedDeferred.resolve();
       this.serverStatus = 'running';
       done.resolve();
