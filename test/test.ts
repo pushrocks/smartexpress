@@ -1,10 +1,12 @@
 import { expect, tap } from '@pushrocks/tapbundle';
 import * as smartrequest from '@pushrocks/smartrequest';
+import nodeFetch from 'node-fetch';
 
 import * as smartexpress from '../ts/index';
 
 let testServer: smartexpress.Server;
 let testRoute: smartexpress.Route;
+let testRoute2: smartexpress.Route;
 let testHandler: smartexpress.Handler;
 
 // =================
@@ -25,6 +27,7 @@ tap.test('should create a valid Server', async () => {
 
 tap.test('should create a valid Route', async () => {
   testRoute = testServer.addRoute('/someroute');
+  testRoute2 = testServer.addRoute('/someroute/:filePath');
   expect(testRoute).to.be.instanceof(smartexpress.Route);
 });
 
@@ -45,6 +48,10 @@ tap.test('should add handler to route', async () => {
   testRoute.addHandler(testHandler);
 });
 
+tap.test('should create a valid StaticHandler', async () => {
+  testRoute2.addHandler(new smartexpress.HandlerStatic(__dirname));
+});
+
 // =====================
 // start the server and test the configuration
 // =====================
@@ -56,7 +63,7 @@ tap.test('should start the server allright', async () => {
 
 // see if a demo request holds up
 tap.test('should issue a request', async tools => {
-  let response = await smartrequest.postJson('http://localhost:3000/someroute', {
+  const response = await smartrequest.postJson('http://localhost:3000/someroute', {
     headers: {
       'X-Forwarded-Proto': 'https'
     },
@@ -65,6 +72,10 @@ tap.test('should issue a request', async tools => {
     }
   });
   console.log(response.body);
+});
+
+tap.test('should get a file from disk', async () => {
+  const response = await nodeFetch('http://localhost:3000/someroute/test.ts');
 });
 
 // ========
