@@ -75,7 +75,8 @@ tap.test('should issue a request', async tools => {
 });
 
 tap.test('should get a file from disk', async () => {
-  const response = await nodeFetch('http://localhost:3000/someroute/test.ts');
+  const response = await nodeFetch('http://localhost:3000/someroute/testresponse.js');
+  console.log(response.headers);
 });
 
 // ========

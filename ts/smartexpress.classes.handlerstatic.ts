@@ -22,7 +22,7 @@ export class HandlerStatic extends Handler {
       // lets actually care about serving
       const fileString = plugins.smartfile.fs.toStringSync(joinedPath);
       res.type(parsedPath.ext);
-      res.writeHead(200);
+      res.status(200);
       res.send(fileString);
       res.end();
     });
