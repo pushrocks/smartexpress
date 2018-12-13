@@ -15,13 +15,14 @@ export class HandlerStatic extends Handler {
         filePath.includes('~') || // don't allow referencing of home directory
         !joinedPath.startsWith(pathArg) // make sure the joined path is within the directory
       ) {
-        res.status(500);
+        res.writeHead(500);
         res.end();
         return;
       }
       // lets actually care about serving
       const fileString = plugins.smartfile.fs.toStringSync(joinedPath);
       res.type(parsedPath.ext);
+      res.writeHead(200);
       res.send(fileString);
       res.end();
     });
