@@ -17,6 +17,5 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as expressForceSsl from 'express-force-ssl';
 import * as helmet from 'helmet';
-import * as mime from 'mime';
 
-export { bodyParser, cors, express, expressForceSsl, helmet, mime };
+export { bodyParser, cors, express, expressForceSsl, helmet };

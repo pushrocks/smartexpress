@@ -21,8 +21,7 @@ export class HandlerStatic extends Handler {
       }
       // lets actually care about serving
       const fileString = plugins.smartfile.fs.toStringSync(joinedPath);
-      const mimeType = plugins.mime.getType(parsedPath.ext.slice(1));
-      res.type(mimeType);
+      res.type(parsedPath.ext);
       res.send(fileString);
       res.end();
     });
