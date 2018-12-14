@@ -8,9 +8,11 @@ export class HandlerProxy extends Handler {
    */
   constructor(remoteMountPointArg: string) {
     super('ALL', async (req, res) => {
-      const relativeRequest = req.path.slice(req.route.path.length - 1);
-      const proxyRequestUrl = remoteMountPointArg + relativeRequest;
-      const proxiedResponse = await plugins.smartrequest.request();
+      const relativeRequestPath = req.path.slice(req.route.path.length - 1);
+      const proxyRequestUrl = remoteMountPointArg + relativeRequestPath;
+      const proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
+        method: req.method
+      });
     });
   }
 }
