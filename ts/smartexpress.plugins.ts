@@ -8,8 +8,9 @@ export { http, path };
 import * as lik from '@pushrocks/lik';
 import * as smartfile from '@pushrocks/smartfile';
 import * as smartq from '@pushrocks/smartpromise';
+import * as smartrequest from '@pushrocks/smartrequest';
 
-export { lik, smartfile, smartq };
+export { lik, smartfile, smartq, smartrequest };
 
 // express
 import * as bodyParser from 'body-parser';
