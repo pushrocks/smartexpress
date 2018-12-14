@@ -4,7 +4,7 @@ import { Handler } from './smartexpress.classes.handler';
 
 export class HandlerStatic extends Handler {
   constructor(pathArg: string) {
-    super("GET", async (req, res) => {
+    super('GET', async (req, res) => {
       // lets compute some paths
       const filePath: string = req.path.slice(req.route.path.length - 1);
       console.log(filePath);
