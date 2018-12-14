@@ -13,6 +13,10 @@ export class HandlerProxy extends Handler {
       const proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
         method: req.method
       });
+      res.type(proxiedResponse.headers["content-type"]);
+      res.status(200);
+      res.send(proxiedResponse.body);
+      res.end();
     });
   }
 }
