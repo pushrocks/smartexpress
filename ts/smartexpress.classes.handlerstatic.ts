@@ -3,7 +3,9 @@ import * as plugins from './smartexpress.plugins';
 import { Handler } from './smartexpress.classes.handler';
 
 export class HandlerStatic extends Handler {
-  constructor(pathArg: string) {
+  constructor(pathArg: string, optionsArg?: {
+    headers?: {[key: string]: string}
+  }) {
     super('GET', async (req, res) => {
       // lets compute some paths
       const filePath: string = req.path.slice(req.route.path.length - 1);
@@ -20,6 +22,13 @@ export class HandlerStatic extends Handler {
         res.writeHead(500);
         res.end();
         return;
+      }
+
+      // set additional headers
+      if (optionsArg && optionsArg.headers) {
+        for(const key of Object.keys(optionsArg.headers)) {
+            res.set(key, optionsArg.headers[key]);
+        }
       }
 
       // lets actually care about serving, if security checks pass
