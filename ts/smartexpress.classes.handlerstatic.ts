@@ -8,7 +8,11 @@ export class HandlerStatic extends Handler {
   }) {
     super('GET', async (req, res) => {
       // lets compute some paths
-      const filePath: string = req.path.slice(req.route.path.length - 1);
+      let filePath: string = req.path.slice(req.route.path.length - 1);
+      if(filePath === '') {
+        console.log('replaced root with index.html');
+        filePath = 'index.html';
+      }
       console.log(filePath);
       const joinedPath = plugins.path.join(pathArg, filePath);
       const parsedPath = plugins.path.parse(joinedPath);
