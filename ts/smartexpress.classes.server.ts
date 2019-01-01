@@ -6,38 +6,37 @@ import { Handler } from './smartexpress.classes.handler';
 // export types
 import { Objectmap } from '@pushrocks/lik';
 import { Server as HttpServer } from 'http';
-import { express } from './smartexpress.plugins';
 
-export interface ServerOptions {
+export interface IServerOptions {
   cors: boolean;
   forceSsl: boolean;
   port?: number | string;
-  defaultAnswer?: string;
+  defaultAnswer?: () => Promise<string>;
 }
 
 export type TServerStatus = 'initiated' | 'running' | 'stopped';
 
 export class Server {
-  httpServer: plugins.http.Server;
-  expressAppInstance: plugins.express.Application;
-  routeObjectMap = new plugins.lik.Objectmap<Route>();
-  options: ServerOptions;
-  serverStatus: TServerStatus = 'initiated';
+  public httpServer: plugins.http.Server;
+  public expressAppInstance: plugins.express.Application;
+  public routeObjectMap = new plugins.lik.Objectmap<Route>();
+  public options: IServerOptions;
+  public serverStatus: TServerStatus = 'initiated';
 
   // do stuff when server is ready
   private startedDeferred = plugins.smartq.defer();
   // tslint:disable-next-line:member-ordering
-  startedPromise = this.startedDeferred.promise;
+  public startedPromise = this.startedDeferred.promise;
 
-  constructor(optionsArg: ServerOptions) {
+  constructor(optionsArg: IServerOptions) {
     this.options = optionsArg;
   }
 
-  updateServerOptions(optionsArg: ServerOptions) {
+  public updateServerOptions(optionsArg: IServerOptions) {
     Object.assign(this.options, optionsArg);
   }
 
-  addRoute(routeStringArg: string, handlerArg?: Handler) {
+  public addRoute(routeStringArg: string, handlerArg?: Handler) {
     let route = new Route(this, routeStringArg);
     if (handlerArg) {
       route.addHandler(handlerArg);
@@ -46,8 +45,8 @@ export class Server {
     return route;
   }
 
-  async start(portArg: number | string = this.options.port) {
-    let done = plugins.smartq.defer();
+  public async start(portArg: number | string = this.options.port) {
+    const done = plugins.smartq.defer();
 
     if (typeof portArg === 'string') {
       portArg = parseInt(portArg);
@@ -79,7 +78,7 @@ export class Server {
 
     // set up routes in for express
     await this.routeObjectMap.forEach(async routeArg => {
-      let expressRoute = this.expressAppInstance.route(routeArg.routeString);
+      const expressRoute = this.expressAppInstance.route(routeArg.routeString);
       routeArg.handlerObjectMap.forEach(async handler => {
         switch (handler.httpMethod) {
           case 'GET':
@@ -104,8 +103,8 @@ export class Server {
     });
 
     if (this.options.defaultAnswer) {
-      this.expressAppInstance.get('/', (request, response) => {
-        response.send(this.options.defaultAnswer);
+      this.expressAppInstance.get('/', async (request, response) => {
+        response.send(await this.options.defaultAnswer());
       });
     }
 
@@ -119,11 +118,11 @@ export class Server {
     return await done.promise;
   }
 
-  getHttpServer() {
+  public getHttpServer() {
     return this.httpServer;
   }
 
-  async stop() {
+  public async stop() {
     let done = plugins.smartq.defer();
     if (this.httpServer) {
       this.httpServer.close(() => {
