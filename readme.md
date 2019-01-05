@@ -8,6 +8,7 @@ express apis the smart way
 [![git](https://pushrocks.gitlab.io/assets/repo-button-git.svg)](https://GitLab.com/pushrocks/smartexpress)
 [![git](https://pushrocks.gitlab.io/assets/repo-button-mirror.svg)](https://github.com/pushrocks/smartexpress)
 [![docs](https://pushrocks.gitlab.io/assets/repo-button-docs.svg)](https://pushrocks.gitlab.io/smartexpress/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpushrocks%2Fsmartexpress.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpushrocks%2Fsmartexpress?ref=badge_shield)
 
 ## Status for master
 
@@ -31,3 +32,7 @@ For further information read the linked docs at the top of this README.
 > | By using this npm module you agree to our [privacy policy](https://lossless.gmbH/privacy.html)
 
 [![repo-footer](https://pushrocks.gitlab.io/assets/repo-footer.svg)](https://push.rocks)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpushrocks%2Fsmartexpress.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpushrocks%2Fsmartexpress?ref=badge_large)
