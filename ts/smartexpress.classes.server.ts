@@ -11,8 +11,8 @@ export interface IServerOptions {
   cors: boolean;
   forceSsl: boolean;
   port?: number | string;
-  publicKey: string;
-  privateKey: string;
+  publicKey?: string;
+  privateKey?: string;
   defaultAnswer?: () => Promise<string>;
 }
 
