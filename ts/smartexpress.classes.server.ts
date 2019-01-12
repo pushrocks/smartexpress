@@ -59,15 +59,18 @@ export class Server {
     }
 
     this.expressAppInstance = plugins.express();
-    if(!this.options.privateKey || !this.options.publicKey) {
+    if (!this.options.privateKey || !this.options.publicKey) {
       console.log('Got no SSL certificates. Please ensure encryption using e.g. a reverse proxy');
       this.httpServer = plugins.http.createServer(this.expressAppInstance);
     } else {
       console.log('Got SSL certificate. Using it for the http server');
-      this.httpServer = plugins.https.createServer({
-        key: this.options.privateKey,
-        cert: this.options.publicKey
-      }, this.expressAppInstance);
+      this.httpServer = plugins.https.createServer(
+        {
+          key: this.options.privateKey,
+          cert: this.options.publicKey
+        },
+        this.expressAppInstance
+      );
     }
 
     this.expressAppInstance.use(plugins.bodyParser.json()); // for parsing application/json

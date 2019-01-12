@@ -3,13 +3,16 @@ import * as plugins from './smartexpress.plugins';
 import { Handler } from './smartexpress.classes.handler';
 
 export class HandlerStatic extends Handler {
-  constructor(pathArg: string, optionsArg?: {
-    headers?: {[key: string]: string}
-  }) {
+  constructor(
+    pathArg: string,
+    optionsArg?: {
+      headers?: { [key: string]: string };
+    }
+  ) {
     super('GET', async (req, res) => {
       // lets compute some paths
       let filePath: string = req.path.slice(req.route.path.length - 1);
-      if(filePath === '') {
+      if (filePath === '') {
         console.log('replaced root with index.html');
         filePath = 'index.html';
       }
@@ -30,8 +33,8 @@ export class HandlerStatic extends Handler {
 
       // set additional headers
       if (optionsArg && optionsArg.headers) {
-        for(const key of Object.keys(optionsArg.headers)) {
-            res.set(key, optionsArg.headers[key]);
+        for (const key of Object.keys(optionsArg.headers)) {
+          res.set(key, optionsArg.headers[key]);
         }
       }
 
