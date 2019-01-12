@@ -11,13 +11,19 @@ export interface IServerOptions {
   cors: boolean;
   forceSsl: boolean;
   port?: number | string;
+  publicKey: string;
+  privateKey: string;
   defaultAnswer?: () => Promise<string>;
 }
 
 export type TServerStatus = 'initiated' | 'running' | 'stopped';
 
+/**
+ * can be used to spawn a server to answer http/https calls
+ * for constructor options see [[IServerOptions]]
+ */
 export class Server {
-  public httpServer: plugins.http.Server;
+  public httpServer: plugins.http.Server | plugins.https.Server;
   public expressAppInstance: plugins.express.Application;
   public routeObjectMap = new plugins.lik.Objectmap<Route>();
   public options: IServerOptions;
@@ -37,7 +43,7 @@ export class Server {
   }
 
   public addRoute(routeStringArg: string, handlerArg?: Handler) {
-    let route = new Route(this, routeStringArg);
+    const route = new Route(this, routeStringArg);
     if (handlerArg) {
       route.addHandler(handlerArg);
     }
@@ -53,12 +59,21 @@ export class Server {
     }
 
     this.expressAppInstance = plugins.express();
-    this.httpServer = new plugins.http.Server(this.expressAppInstance);
+    if(!this.options.privateKey || !this.options.publicKey) {
+      console.log('Got no SSL certificates. Please ensure encryption using e.g. a reverse proxy');
+      this.httpServer = plugins.http.createServer(this.expressAppInstance);
+    } else {
+      console.log('Got SSL certificate. Using it for the http server');
+      this.httpServer = plugins.https.createServer({
+        key: this.options.privateKey,
+        cert: this.options.publicKey
+      }, this.expressAppInstance);
+    }
 
     this.expressAppInstance.use(plugins.bodyParser.json()); // for parsing application/json
     this.expressAppInstance.use(plugins.bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-    // ssl
+    // forceSsl
     if (this.options.forceSsl) {
       this.expressAppInstance.set('forceSSLOptions', {
         enable301Redirects: true,
