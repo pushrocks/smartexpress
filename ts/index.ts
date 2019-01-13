@@ -4,3 +4,6 @@ export * from './smartexpress.classes.route';
 export * from './smartexpress.classes.handler';
 export * from './smartexpress.classes.handlerstatic';
 export * from './smartexpress.classes.handlerproxy';
+
+// Type helpers
+export { Request, Response } from 'express';
