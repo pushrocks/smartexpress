@@ -13,4 +13,6 @@ export const redirectFrom80To443 = async () => {
   }));
 
   await smartexpressInstance.start();
+
+  return smartexpressInstance;
 };
