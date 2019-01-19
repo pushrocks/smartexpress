@@ -114,14 +114,15 @@ export class Server {
         'twitterbot',
         'vkShare',
         'W3C_Validator',
-        'whatsapp',
-      ]
+        'whatsapp'
+      ];
 
-
-      this.expressAppInstance.use(plugins.rendertronMiddleWare.makeMiddleware({
-        proxyUrl: this.options.renderTronUrl,
-        userAgentPattern: new RegExp(botUserAgents.join('|'), 'i')
-      }));
+      this.expressAppInstance.use(
+        plugins.rendertronMiddleWare.makeMiddleware({
+          proxyUrl: this.options.renderTronUrl,
+          userAgentPattern: new RegExp(botUserAgents.join('|'), 'i')
+        })
+      );
     }
 
     // set up routes in for express

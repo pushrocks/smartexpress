@@ -8,9 +8,12 @@ export const redirectFrom80To443 = async () => {
     port: 80
   });
 
-  smartexpressInstance.addRoute('*', new smartexpress.Handler('ALL', async (req, res) => {
-    res.redirect('https://' + req.headers.host + req.url);
-  }));
+  smartexpressInstance.addRoute(
+    '*',
+    new smartexpress.Handler('ALL', async (req, res) => {
+      res.redirect('https://' + req.headers.host + req.url);
+    })
+  );
 
   await smartexpressInstance.start();
 

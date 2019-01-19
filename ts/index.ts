@@ -6,9 +6,7 @@ export * from './smartexpress.classes.handlerstatic';
 export * from './smartexpress.classes.handlerproxy';
 
 import * as helpers from './smartexpress.helpers';
-export {
-  helpers
-};
+export { helpers };
 
 // Type helpers
 export { Request, Response } from 'express';
