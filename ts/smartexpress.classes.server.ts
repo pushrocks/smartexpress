@@ -14,6 +14,7 @@ export interface IServerOptions {
   publicKey?: string;
   privateKey?: string;
   defaultAnswer?: () => Promise<string>;
+  renderTronUrl?: string;
 }
 
 export type TServerStatus = 'initiated' | 'running' | 'stopped';
@@ -92,6 +93,13 @@ export class Server {
     // cors
     if (this.options.cors) {
       this.expressAppInstance.use(plugins.cors());
+    }
+
+    // rendertron
+    if (this.options.renderTronUrl) {
+      this.expressAppInstance.use(plugins.rendertronMiddleWare.makeMiddleware({
+        proxyUrl: this.options.renderTronUrl
+      }));
     }
 
     // set up routes in for express
