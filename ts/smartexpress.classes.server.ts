@@ -97,8 +97,30 @@ export class Server {
 
     // rendertron
     if (this.options.renderTronUrl) {
+      const botUserAgents = [
+        'baiduspider',
+        'bingbot',
+        'embedly',
+        'facebookexternalhit',
+        'Googlebot',
+        'linkedinbot',
+        'outbrain',
+        'pinterest',
+        'quora link preview',
+        'rogerbot',
+        'showyoubot',
+        'slackbot',
+        'TelegramBot',
+        'twitterbot',
+        'vkShare',
+        'W3C_Validator',
+        'whatsapp',
+      ]
+
+
       this.expressAppInstance.use(plugins.rendertronMiddleWare.makeMiddleware({
-        proxyUrl: this.options.renderTronUrl
+        proxyUrl: this.options.renderTronUrl,
+        userAgentPattern: new RegExp(botUserAgents.join('|'), 'i')
       }));
     }
 
