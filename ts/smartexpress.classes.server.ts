@@ -104,6 +104,7 @@ export class Server {
         'facebookexternalhit',
         'Googlebot',
         'linkedinbot',
+        'msnbot',
         'outbrain',
         'pinterest',
         'quora link preview',
