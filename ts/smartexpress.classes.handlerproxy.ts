@@ -18,7 +18,9 @@ export class HandlerProxy extends Handler {
       const proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
         method: req.method
       });
-      res.type(proxiedResponse.headers['content-type']);
+      for (const header of Object.keys(proxiedResponse.headers)) {
+        res.set(header, proxiedResponse.headers[header] as string);
+      }
 
       // set additional headers
       if (optionsArg && optionsArg.headers) {
