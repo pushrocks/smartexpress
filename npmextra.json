@@ -3,5 +3,15 @@
     "npmGlobalTools": [],
     "npmAccessLevel": "public",
     "npmRegistryUrl": "registry.npmjs.org"
+  },
+  "gitzone": {
+    "module": {
+      "githost": "gitlab.com",
+      "gitscope": "pushrocks",
+      "gitrepo": "smartexpress",
+      "shortDescription": "express apis the smart way",
+      "npmPackagename": "@pushrocks/smartexpress",
+      "license": "MIT"
+    }
   }
 }
