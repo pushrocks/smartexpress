@@ -98,11 +98,19 @@ export class Server {
     // rendertron
     if (this.options.renderTronUrl) {
       const botUserAgents = [
+        // Baidu
         'baiduspider',
-        'bingbot',
         'embedly',
+        
+        // Facebook
         'facebookexternalhit',
+        
+        // Google
         'Googlebot',
+        'Mediapartners-Google',
+        
+        // Microsoft
+        'bingbot',
         'linkedinbot',
         'msnbot',
         'outbrain',
@@ -112,9 +120,13 @@ export class Server {
         'showyoubot',
         'slackbot',
         'TelegramBot',
+
+        // Twitter
         'twitterbot',
         'vkShare',
         'W3C_Validator',
+
+        // WhatsApp
         'whatsapp'
       ];
 
