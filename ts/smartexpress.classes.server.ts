@@ -101,14 +101,14 @@ export class Server {
         // Baidu
         'baiduspider',
         'embedly',
-        
+
         // Facebook
         'facebookexternalhit',
-        
+
         // Google
-        'Googlebot',
-        'Mediapartners-Google',
-        
+        'Googlebot', // -> the default Google Bot
+        'Mediapartners-Google', // the Bot Agent used by AdSense
+
         // Microsoft
         'bingbot',
         'linkedinbot',
