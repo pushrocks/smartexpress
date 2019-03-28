@@ -1,6 +1,10 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import { expect, tap } from '@pushrocks/tapbundle';
-import * as smartrequest from '@pushrocks/smartrequest';
+
+// helper dependencies
+// tslint:disable-next-line:no-implicit-dependencies
 import nodeFetch from 'node-fetch';
+import * as smartrequest from '@pushrocks/smartrequest';
 
 import * as smartexpress from '../ts/index';
 
@@ -16,7 +20,9 @@ let testHandler: smartexpress.Handler;
 tap.test('should create a valid Server', async () => {
   testServer = new smartexpress.Server({
     cors: true,
-    forceSsl: false
+    forceSsl: false,
+    robots: 'standard',
+    domain: 'testing.git.zone'
   });
   expect(testServer).to.be.instanceof(smartexpress.Server);
 });

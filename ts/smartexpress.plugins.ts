@@ -20,5 +20,6 @@ import * as express from 'express';
 import * as expressForceSsl from 'express-force-ssl';
 import * as helmet from 'helmet';
 import * as rendertronMiddleWare from 'rendertron-middleware';
+import * as sitemap from 'sitemap';
 
-export { bodyParser, cors, express, expressForceSsl, helmet, rendertronMiddleWare };
+export { bodyParser, cors, express, expressForceSsl, helmet, rendertronMiddleWare, sitemap };

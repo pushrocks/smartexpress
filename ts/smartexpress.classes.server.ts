@@ -6,6 +6,9 @@ import { Handler } from './smartexpress.classes.handler';
 // export types
 import { Objectmap } from '@pushrocks/lik';
 import { Server as HttpServer } from 'http';
+import { setupRendertron } from './smartexpress.tools.rendertron';
+import { setupRobots } from './smartexpress.tools.robots';
+import { Sitemap } from './smartexpress.classes.sitemap';
 
 export interface IServerOptions {
   cors: boolean;
@@ -15,6 +18,8 @@ export interface IServerOptions {
   privateKey?: string;
   defaultAnswer?: () => Promise<string>;
   renderTronUrl?: string;
+  robots?: 'off' | 'standard' | 'custom';
+  domain?: string;
 }
 
 export type TServerStatus = 'initiated' | 'running' | 'stopped';
@@ -29,6 +34,8 @@ export class Server {
   public routeObjectMap = new plugins.lik.Objectmap<Route>();
   public options: IServerOptions;
   public serverStatus: TServerStatus = 'initiated';
+
+  public sitemap = new Sitemap();
 
   // do stuff when server is ready
   private startedDeferred = plugins.smartq.defer();
@@ -97,45 +104,12 @@ export class Server {
 
     // rendertron
     if (this.options.renderTronUrl) {
-      const botUserAgents = [
-        // Baidu
-        'baiduspider',
-        'embedly',
+      await setupRendertron(this.expressAppInstance);
+    }
 
-        // Facebook
-        'facebookexternalhit',
-
-        // Google
-        'Googlebot', // -> the default Google Bot
-        'Mediapartners-Google', // the Bot Agent used by AdSense
-
-        // Microsoft
-        'bingbot',
-        'linkedinbot',
-        'msnbot',
-        'outbrain',
-        'pinterest',
-        'quora link preview',
-        'rogerbot',
-        'showyoubot',
-        'slackbot',
-        'TelegramBot',
-
-        // Twitter
-        'twitterbot',
-        'vkShare',
-        'W3C_Validator',
-
-        // WhatsApp
-        'whatsapp'
-      ];
-
-      this.expressAppInstance.use(
-        plugins.rendertronMiddleWare.makeMiddleware({
-          proxyUrl: this.options.renderTronUrl,
-          userAgentPattern: new RegExp(botUserAgents.join('|'), 'i')
-        })
-      );
+    // robots
+    if (this.options.robots === 'standard') {
+      await setupRobots(this.expressAppInstance, this.options.domain);
     }
 
     // set up routes in for express
@@ -185,7 +159,7 @@ export class Server {
   }
 
   public async stop() {
-    let done = plugins.smartq.defer();
+    const done = plugins.smartq.defer();
     if (this.httpServer) {
       this.httpServer.close(() => {
         done.resolve();
