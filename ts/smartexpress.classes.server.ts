@@ -104,7 +104,7 @@ export class Server {
 
     // rendertron
     if (this.options.renderTronUrl) {
-      await setupRendertron(this.expressAppInstance);
+      await setupRendertron(this);
     }
 
     // robots

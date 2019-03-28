@@ -22,7 +22,8 @@ tap.test('should create a valid Server', async () => {
     cors: true,
     forceSsl: false,
     robots: 'standard',
-    domain: 'testing.git.zone'
+    domain: 'testing.git.zone',
+    renderTronUrl: 'https://testing.git.zone/render'
   });
   expect(testServer).to.be.instanceof(smartexpress.Server);
 });

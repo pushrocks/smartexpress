@@ -1,6 +1,7 @@
 import * as plugins from './smartexpress.plugins';
+import { Server } from './smartexpress.classes.server';
 
-export const setupRendertron = async (expressAppInstanceArg: plugins.express.Application) => {
+export const setupRendertron = async (smartexpressInstance: Server) => {
   const botUserAgents = [
     // Baidu
     'baiduspider',
@@ -34,9 +35,9 @@ export const setupRendertron = async (expressAppInstanceArg: plugins.express.App
     'whatsapp'
   ];
 
-  expressAppInstanceArg.use(
+  smartexpressInstance.expressAppInstance.use(
     plugins.rendertronMiddleWare.makeMiddleware({
-      proxyUrl: this.options.renderTronUrl,
+      proxyUrl: smartexpressInstance.options.renderTronUrl,
       userAgentPattern: new RegExp(botUserAgents.join('|'), 'i')
     })
   );
