@@ -15,10 +15,10 @@ export { lik, smartfile, smartq, smartrequest };
 
 // express
 import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
-import * as express from 'express';
+import cors from 'cors';
+import express from 'express';
 import * as expressForceSsl from 'express-force-ssl';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import * as rendertronMiddleWare from 'rendertron-middleware';
 import * as sitemap from 'sitemap';
 

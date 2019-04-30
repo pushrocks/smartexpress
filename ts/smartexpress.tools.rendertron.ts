@@ -11,8 +11,8 @@ export const setupRendertron = async (smartexpressInstance: Server) => {
     'facebookexternalhit',
 
     // Google
-    'Googlebot', // -> the default Google Bot
-    'Mediapartners-Google', // the Bot Agent used by AdSense
+    // 'Googlebot', // -> the default Google Bot
+    // 'Mediapartners-Google', // the Bot Agent used by AdSense
 
     // Microsoft
     'bingbot',
