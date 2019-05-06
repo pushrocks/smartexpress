@@ -2,7 +2,7 @@ import * as plugins from './smartexpress.plugins';
 
 export interface ISitePackage {
   url: string;
-  changeFreq: 'daily' | 'monthly'
+  changeFreq: 'daily' | 'monthly';
 }
 
 export class Sitemap {
@@ -12,9 +12,9 @@ export class Sitemap {
   pagePackages: ISitePackage[] = [];
 
   public getSitemap(domainArg: string) {
-    const sitemap = plugins.sitemap.createSitemap ({
+    const sitemap = plugins.sitemap.createSitemap({
       hostname: `http://${domainArg}`,
-      cacheTime: 600000,        // 600 sec - cache purge period
+      cacheTime: 600000, // 600 sec - cache purge period
       urls: (() => {
         const urlArray = [];
         for (const pagePackage of this.pagePackages) {

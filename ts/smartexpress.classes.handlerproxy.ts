@@ -1,6 +1,8 @@
 import * as plugins from './smartexpress.plugins';
 import { Handler } from './smartexpress.classes.handler';
 
+import * as interfaces from './interfaces';
+
 export class HandlerProxy extends Handler {
   /**
    * The constuctor of HandlerProxy
@@ -9,6 +11,9 @@ export class HandlerProxy extends Handler {
   constructor(
     remoteMountPointArg: string,
     optionsArg?: {
+      responseModifier: interfaces.TResponseModifier<{
+        originalString: string;
+      }>;
       headers?: { [key: string]: string };
     }
   ) {
@@ -29,8 +34,19 @@ export class HandlerProxy extends Handler {
         }
       }
 
+      let responseToSend: string = proxiedResponse.body;
+      if (typeof responseToSend !== 'string') {
+        throw new Error('Proxied response is not a string');
+      }
+
+      if (optionsArg && optionsArg.responseModifier) {
+        responseToSend = await optionsArg.responseModifier({
+          originalString: responseToSend
+        });
+      }
+
       res.status(200);
-      res.send(proxiedResponse.body);
+      res.send(responseToSend);
       res.end();
     });
   }

@@ -1,4 +1,5 @@
 import * as plugins from './smartexpress.plugins';
+import * as interfaces from './interfaces';
 
 import { Handler } from './smartexpress.classes.handler';
 
@@ -6,6 +7,10 @@ export class HandlerStatic extends Handler {
   constructor(
     pathArg: string,
     optionsArg?: {
+      responseModifier: interfaces.TResponseModifier<{
+        path: string;
+        responseContent: string;
+      }>;
       headers?: { [key: string]: string };
     }
   ) {
@@ -47,6 +52,14 @@ export class HandlerStatic extends Handler {
         res.end('File not found!');
         return;
       }
+
+      if (optionsArg && optionsArg.responseModifier) {
+        fileString = await optionsArg.responseModifier({
+          path: filePath,
+          responseContent: fileString
+        });
+      }
+
       res.type(parsedPath.ext);
       res.status(200);
       res.send(fileString);
