@@ -63,7 +63,6 @@ export class HandlerStatic extends Handler {
       res.type(parsedPath.ext);
       res.status(200);
       res.send(fileString);
-      res.end();
     });
   }
 }

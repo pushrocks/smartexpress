@@ -50,7 +50,6 @@ export class HandlerProxy extends Handler {
 
       res.status(200);
       res.send(responseToSend);
-      res.end();
     });
   }
 }
