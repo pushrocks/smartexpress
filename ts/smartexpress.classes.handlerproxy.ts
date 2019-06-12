@@ -21,7 +21,8 @@ export class HandlerProxy extends Handler {
       const relativeRequestPath = req.path.slice(req.route.path.length - 1);
       const proxyRequestUrl = remoteMountPointArg + relativeRequestPath;
       const proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
-        method: req.method
+        method: req.method,
+        autoJsonParse: false
       });
       for (const header of Object.keys(proxiedResponse.headers)) {
         res.set(header, proxiedResponse.headers[header] as string);
