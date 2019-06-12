@@ -36,7 +36,8 @@ export class HandlerProxy extends Handler {
 
       let responseToSend: string = proxiedResponse.body;
       if (typeof responseToSend !== 'string') {
-        throw new Error('Proxied response is not a string');
+        console.log(responseToSend);
+        throw new Error(`Proxied response is not a string, but ${typeof responseToSend}`);
       }
 
       if (optionsArg && optionsArg.responseModifier) {
