@@ -38,5 +38,15 @@
     "helmet": "^3.18.0",
     "rendertron-middleware": "^0.1.5",
     "sitemap": "^2.2.0"
-  }
+  },
+  "files": [
+    "ts/*",
+    "ts_web/*",
+    "dist/*",
+    "dist_web/*",
+    "assets/*",
+    "cli.js",
+    "npmextra.json",
+    "readme.md"
+  ]
 }
