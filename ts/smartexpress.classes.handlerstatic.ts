@@ -7,7 +7,7 @@ export class HandlerStatic extends Handler {
   constructor(
     pathArg: string,
     optionsArg?: {
-      responseModifier: interfaces.TResponseModifier<{
+      responseModifier?: interfaces.TResponseModifier<{
         path: string;
         responseContent: string;
       }>;
