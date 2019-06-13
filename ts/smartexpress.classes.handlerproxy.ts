@@ -11,7 +11,7 @@ export class HandlerProxy extends Handler {
   constructor(
     remoteMountPointArg: string,
     optionsArg?: {
-      responseModifier: interfaces.TResponseModifier<{
+      responseModifier?: interfaces.TResponseModifier<{
         originalString: string;
       }>;
       headers?: { [key: string]: string };
