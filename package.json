@@ -1,6 +1,6 @@
 {
   "name": "@pushrocks/smartexpress",
-  "version": "3.0.29",
+  "version": "3.0.30",
   "private": false,
   "description": "express apis the smart way",
   "main": "dist/index.js",
