@@ -83,7 +83,12 @@ export class Server {
 
     this.expressAppInstance.use(plugins.bodyParser.json()); // for parsing application/json
     this.expressAppInstance.use(plugins.bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
+    this.expressAppInstance.use((req, res, next) => {
+      req.setTimeout(10000, () => {
+        console.log(`the request for ${req.path} took too long and has therefore timed out`);
+      });
+      next();
+    });
     // forceSsl
     if (this.options.forceSsl) {
       this.expressAppInstance.set('forceSSLOptions', {
