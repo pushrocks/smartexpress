@@ -20,10 +20,17 @@ export class HandlerProxy extends Handler {
     super('ALL', async (req, res) => {
       const relativeRequestPath = req.path.slice(req.route.path.length - 1);
       const proxyRequestUrl = remoteMountPointArg + relativeRequestPath;
-      const proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
-        method: req.method,
-        autoJsonParse: false
-      });
+      console.log(`proxy ${req.path} to ${proxyRequestUrl}`);
+      let proxiedResponse: plugins.smartrequest.IExtendedIncomingMessage;
+      try {
+        proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
+          method: req.method,
+          autoJsonParse: false
+        });
+      } catch {
+        res.end('failed to fullfill request');
+        return;
+      }
       for (const header of Object.keys(proxiedResponse.headers)) {
         res.set(header, proxiedResponse.headers[header] as string);
       }
@@ -49,7 +56,8 @@ export class HandlerProxy extends Handler {
       }
 
       res.status(200);
-      res.send(responseToSend);
+      res.write(responseToSend);
+      res.end();
     });
   }
 }
