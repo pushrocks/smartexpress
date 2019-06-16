@@ -8,15 +8,17 @@ import { Objectmap } from '@pushrocks/lik';
 import { Server as HttpServer } from 'http';
 import { setupRendertron } from './smartexpress.tools.rendertron';
 import { setupRobots } from './smartexpress.tools.robots';
+import { setupManifest } from './smartexpress.tools.manifest';
 import { Sitemap } from './smartexpress.classes.sitemap';
 
 export interface IServerOptions {
   cors: boolean;
+  defaultAnswer?: () => Promise<string>;
   forceSsl: boolean;
+  manifest?: plugins.smartmanifest.ISmartManifestConstructorOptions;
   port?: number | string;
   publicKey?: string;
   privateKey?: string;
-  defaultAnswer?: () => Promise<string>;
   renderTronUrl?: string;
   robots?: 'off' | 'standard' | 'custom';
   domain?: string;
@@ -38,7 +40,7 @@ export class Server {
   public sitemap = new Sitemap();
 
   // do stuff when server is ready
-  private startedDeferred = plugins.smartq.defer();
+  private startedDeferred = plugins.smartpromise.defer();
   // tslint:disable-next-line:member-ordering
   public startedPromise = this.startedDeferred.promise;
 
@@ -60,7 +62,7 @@ export class Server {
   }
 
   public async start(portArg: number | string = this.options.port) {
-    const done = plugins.smartq.defer();
+    const done = plugins.smartpromise.defer();
 
     if (typeof portArg === 'string') {
       portArg = parseInt(portArg);
@@ -113,8 +115,13 @@ export class Server {
     }
 
     // robots
-    if (this.options.robots === 'standard') {
+    if (this.options.robots === 'standard' && this.options.domain) {
       await setupRobots(this.expressAppInstance, this.options.domain);
+    }
+
+    // manifest.json
+    if (this.options.manifest) {
+      await setupManifest(this.expressAppInstance, this.options.manifest);
     }
 
     // set up routes in for express
@@ -164,7 +171,7 @@ export class Server {
   }
 
   public async stop() {
-    const done = plugins.smartq.defer();
+    const done = plugins.smartpromise.defer();
     if (this.httpServer) {
       this.httpServer.close(() => {
         done.resolve();

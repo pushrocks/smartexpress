@@ -20,9 +20,13 @@ let testHandler: smartexpress.Handler;
 tap.test('should create a valid Server', async () => {
   testServer = new smartexpress.Server({
     cors: true,
-    forceSsl: false,
-    robots: 'standard',
     domain: 'testing.git.zone',
+    forceSsl: false,
+    manifest: {
+      name: 'Test App',
+      short_name: 'testapp'
+    },
+    robots: 'standard',
     renderTronUrl: 'https://testing.git.zone/render'
   });
   expect(testServer).to.be.instanceof(smartexpress.Server);

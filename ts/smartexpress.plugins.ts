@@ -8,10 +8,11 @@ export { http, https, path };
 // pushrocks scope
 import * as lik from '@pushrocks/lik';
 import * as smartfile from '@pushrocks/smartfile';
-import * as smartq from '@pushrocks/smartpromise';
+import * as smartmanifest from '@pushrocks/smartmanifest';
+import * as smartpromise from '@pushrocks/smartpromise';
 import * as smartrequest from '@pushrocks/smartrequest';
 
-export { lik, smartfile, smartq, smartrequest };
+export { lik, smartfile, smartmanifest, smartpromise, smartrequest };
 
 // express
 import * as bodyParser from 'body-parser';
