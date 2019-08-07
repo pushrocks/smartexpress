@@ -14,7 +14,7 @@ import { Sitemap } from './smartexpress.classes.sitemap';
 export interface IServerOptions {
   cors: boolean;
   defaultAnswer?: () => Promise<string>;
-  forceSsl: boolean;
+  forceSsl?: boolean;
   manifest?: plugins.smartmanifest.ISmartManifestConstructorOptions;
   port?: number | string;
   publicKey?: string;
@@ -45,7 +45,9 @@ export class Server {
   public startedPromise = this.startedDeferred.promise;
 
   constructor(optionsArg: IServerOptions) {
-    this.options = optionsArg;
+    this.options = {
+      ...optionsArg
+    };
   }
 
   public updateServerOptions(optionsArg: IServerOptions) {
