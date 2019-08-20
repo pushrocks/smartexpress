@@ -71,10 +71,10 @@ export class Server {
     }
 
     this.expressAppInstance = plugins.express();
-    if (!this.options.privateKey || !this.options.publicKey) {
+    if (!this.httpServer && (!this.options.privateKey || !this.options.publicKey)) {
       console.log('Got no SSL certificates. Please ensure encryption using e.g. a reverse proxy');
       this.httpServer = plugins.http.createServer(this.expressAppInstance);
-    } else {
+    } else if (!this.httpServer) {
       console.log('Got SSL certificate. Using it for the http server');
       this.httpServer = plugins.https.createServer(
         {
@@ -83,6 +83,8 @@ export class Server {
         },
         this.expressAppInstance
       );
+    } else {
+      console.log('Using externally supplied http server');
     }
 
     this.expressAppInstance.use(plugins.bodyParser.json()); // for parsing application/json
