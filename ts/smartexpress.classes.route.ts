@@ -6,10 +6,10 @@ import { Objectmap } from '@pushrocks/lik';
 import { IRoute as IExpressRoute } from 'express';
 
 export class Route {
-  routeString: string;
-  handlerObjectMap = new Objectmap<Handler>();
-  expressMiddlewareObjectMap = new Objectmap<any>();
-  expressRoute: IExpressRoute; // will be set to server route on server start
+  public routeString: string;
+  public handlerObjectMap = new Objectmap<Handler>();
+  public expressMiddlewareObjectMap = new Objectmap<any>();
+  public expressRoute: IExpressRoute; // will be set to server route on server start
   constructor(ServerArg: Server, routeStringArg: string) {
     this.routeString = routeStringArg;
   }
@@ -18,7 +18,7 @@ export class Route {
    * add a handler to do something with requests
    * @param handlerArg
    */
-  addHandler(handlerArg: Handler) {
+  public addHandler(handlerArg: Handler) {
     this.handlerObjectMap.add(handlerArg);
   }
 
@@ -26,7 +26,7 @@ export class Route {
    * add a express middleware
    * @param middlewareArg
    */
-  addExpressMiddleWare(middlewareArg) {
+  public addExpressMiddleWare(middlewareArg) {
     this.expressMiddlewareObjectMap.add(middlewareArg);
   }
 }
