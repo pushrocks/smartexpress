@@ -86,6 +86,8 @@ export class Server {
     } else {
       console.log('Using externally supplied http server');
     }
+    this.httpServer.keepAliveTimeout = 61000;
+    this.httpServer.headersTimeout = 65000;
 
     this.expressAppInstance.use(plugins.bodyParser.json()); // for parsing application/json
     this.expressAppInstance.use(plugins.bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
