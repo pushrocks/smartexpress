@@ -183,6 +183,7 @@ export class Server {
         done.resolve();
         this.serverStatus = 'stopped';
       });
+      this.httpServer.maxConnections = 0;
     } else {
       throw new Error('There is no Server to be stopped. Have you started it?');
     }
