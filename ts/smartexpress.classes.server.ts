@@ -44,6 +44,8 @@ export class Server {
   // tslint:disable-next-line:member-ordering
   public startedPromise = this.startedDeferred.promise;
 
+  private socketMap = new plugins.lik.Objectmap<plugins.net.Socket>();
+
   constructor(optionsArg: IServerOptions) {
     this.options = {
       ...optionsArg
@@ -162,6 +164,13 @@ export class Server {
       });
     }
 
+    this.httpServer.on('connection', connection => {
+      this.socketMap.add(connection);
+      connection.on('close', () => {
+        this.socketMap.remove(connection);
+      });
+    });
+
     // finally listen on a port
     this.httpServer.listen(portArg, '0.0.0.0', () => {
       console.log(`now listening on ${portArg}!`);
@@ -183,7 +192,9 @@ export class Server {
         done.resolve();
         this.serverStatus = 'stopped';
       });
-      this.httpServer.maxConnections = 0;
+      await this.socketMap.forEach(async (socket) => {
+        socket.destroy();
+      });
     } else {
       throw new Error('There is no Server to be stopped. Have you started it?');
     }

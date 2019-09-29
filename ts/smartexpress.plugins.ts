@@ -1,9 +1,10 @@
 // node native
 import * as http from 'http';
 import * as https from 'https';
+import * as net from 'net';
 import * as path from 'path';
 
-export { http, https, path };
+export { http, https, net, path };
 
 // pushrocks scope
 import * as lik from '@pushrocks/lik';
