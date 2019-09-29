@@ -188,9 +188,9 @@ export class Server {
   public async stop() {
     const done = plugins.smartpromise.defer();
     if (this.httpServer) {
-      this.httpServer.close(() => {
-        done.resolve();
+      this.httpServer.close(async () => {
         this.serverStatus = 'stopped';
+        done.resolve();
       });
       await this.socketMap.forEach(async (socket) => {
         socket.destroy();
