@@ -55,7 +55,12 @@ export class HandlerProxy extends Handler {
         });
 
         // headers
-        res.flushHeaders();
+        for (const key of Object.keys(res.getHeaders())) {
+          if (!modifiedResponse.headers[key]) {
+            res.removeHeader(key);
+          }
+        }
+
         for (const key of Object.keys(modifiedResponse.headers)) {
           res.setHeader(key, modifiedResponse.headers[key]);
         }
