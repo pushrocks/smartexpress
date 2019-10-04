@@ -192,7 +192,7 @@ export class Server {
         this.serverStatus = 'stopped';
         done.resolve();
       });
-      await this.socketMap.forEach(async (socket) => {
+      await this.socketMap.forEach(async socket => {
         socket.destroy();
       });
     } else {

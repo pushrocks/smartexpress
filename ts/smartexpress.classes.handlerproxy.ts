@@ -66,7 +66,6 @@ export class HandlerProxy extends Handler {
         responseToSend = modifiedResponse.responseContent;
       }
 
-      
       res.write(responseToSend);
       res.end();
     });
