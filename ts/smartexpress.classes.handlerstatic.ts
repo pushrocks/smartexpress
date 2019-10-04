@@ -51,7 +51,6 @@ export class HandlerStatic extends Handler {
       }
 
       res.type(parsedPath.ext);
-      res.status(200);
 
       const headers = res.getHeaders();
 
@@ -72,6 +71,8 @@ export class HandlerStatic extends Handler {
         // responseContent
         fileString = modifiedResponse.responseContent;
       }
+
+      res.status(200);
       res.write(fileString);
       res.end();
     });

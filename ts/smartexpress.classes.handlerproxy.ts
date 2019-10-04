@@ -47,8 +47,6 @@ export class HandlerProxy extends Handler {
         throw new Error(`Proxied response is not a string, but ${typeof responseToSend}`);
       }
 
-      res.status(200);
-
       if (optionsArg && optionsArg.responseModifier) {
         const modifiedResponse = await optionsArg.responseModifier({
           headers: res.getHeaders(),
@@ -66,6 +64,7 @@ export class HandlerProxy extends Handler {
         responseToSend = modifiedResponse.responseContent;
       }
 
+      res.status(200);
       res.write(responseToSend);
       res.end();
     });
