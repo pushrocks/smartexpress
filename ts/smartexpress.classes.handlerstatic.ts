@@ -7,10 +7,7 @@ export class HandlerStatic extends Handler {
   constructor(
     pathArg: string,
     optionsArg?: {
-      responseModifier?: interfaces.TResponseModifier<{
-        path: string;
-        responseContent: string;
-      }>;
+      responseModifier?: interfaces.TResponseModifier;
       headers?: { [key: string]: string };
     }
   ) {
@@ -53,15 +50,28 @@ export class HandlerStatic extends Handler {
         return;
       }
 
+      res.type(parsedPath.ext);
+      res.status(200);
+
+      const headers = res.getHeaders();
+
+      // lets modify the response at last
       if (optionsArg && optionsArg.responseModifier) {
-        fileString = await optionsArg.responseModifier({
+        const modifiedResponse = await optionsArg.responseModifier({
+          headers: res.getHeaders(),
           path: filePath,
           responseContent: fileString
         });
-      }
 
-      res.type(parsedPath.ext);
-      res.status(200);
+        // headers
+        res.flushHeaders();
+        for (const key of Object.keys(modifiedResponse.headers)) {
+          res.setHeader(key, modifiedResponse.headers[key]);
+        }
+
+        // responseContent
+        fileString = modifiedResponse.responseContent;
+      }
       res.write(fileString);
       res.end();
     });

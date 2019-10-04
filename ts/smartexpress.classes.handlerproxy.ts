@@ -11,9 +11,7 @@ export class HandlerProxy extends Handler {
   constructor(
     remoteMountPointArg: string,
     optionsArg?: {
-      responseModifier?: interfaces.TResponseModifier<{
-        originalString: string;
-      }>;
+      responseModifier?: interfaces.TResponseModifier;
       headers?: { [key: string]: string };
     }
   ) {
@@ -49,13 +47,26 @@ export class HandlerProxy extends Handler {
         throw new Error(`Proxied response is not a string, but ${typeof responseToSend}`);
       }
 
+      res.status(200);
+
       if (optionsArg && optionsArg.responseModifier) {
-        responseToSend = await optionsArg.responseModifier({
-          originalString: responseToSend
+        const modifiedResponse = await optionsArg.responseModifier({
+          headers: res.getHeaders(),
+          path: req.path,
+          responseContent: responseToSend
         });
+
+        // headers
+        res.flushHeaders();
+        for (const key of Object.keys(modifiedResponse.headers)) {
+          res.setHeader(key, modifiedResponse.headers[key]);
+        }
+
+        // responseContent
+        responseToSend = modifiedResponse.responseContent;
       }
 
-      res.status(200);
+      
       res.write(responseToSend);
       res.end();
     });
