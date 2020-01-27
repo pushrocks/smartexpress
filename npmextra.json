@@ -5,7 +5,7 @@
     "npmRegistryUrl": "registry.npmjs.org"
   },
   "gitzone": {
-    "projectType": "website",
+    "projectType": "npm",
     "module": {
       "githost": "gitlab.com",
       "gitscope": "pushrocks",

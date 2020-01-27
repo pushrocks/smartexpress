@@ -8,7 +8,7 @@ express apis the smart way
 * [docs (typedoc)](https://pushrocks.gitlab.io/smartexpress/)
 
 ## Status for master
-[![build status](https://gitlab.com/pushrocks/smartexpress/badges/master/build.svg)](https://gitlab.com/pushrocks/smartexpress/commits/master)
+[![pipeline status](https://gitlab.com/pushrocks/smartexpress/badges/master/pipeline.svg)](https://gitlab.com/pushrocks/smartexpress/commits/master)
 [![coverage report](https://gitlab.com/pushrocks/smartexpress/badges/master/coverage.svg)](https://gitlab.com/pushrocks/smartexpress/commits/master)
 [![npm downloads per month](https://img.shields.io/npm/dm/@pushrocks/smartexpress.svg)](https://www.npmjs.com/package/@pushrocks/smartexpress)
 [![Known Vulnerabilities](https://snyk.io/test/npm/@pushrocks/smartexpress/badge.svg)](https://snyk.io/test/npm/@pushrocks/smartexpress)
@@ -19,6 +19,11 @@ express apis the smart way
 ## Usage
 
 Use TypeScript for best in class instellisense.
+
+
+## Contribution
+
+We are always happy for code contributions. If you are not the code contributing type that is ok. Still, maintaining Open Source repositories takes considerable time and thought. If you like the quality of what we do and our modules are useful to you we would appreciate a little monthly contribution: You can [contribute one time](https://lossless.link/contribute-onetime) or [contribute monthly](https://lossless.link/contribute). :)
 
 For further information read the linked docs at the top of this readme.
 
