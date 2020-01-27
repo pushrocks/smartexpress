@@ -38,7 +38,8 @@ export const setupRendertron = async (smartexpressInstance: Server) => {
   smartexpressInstance.expressAppInstance.use(
     plugins.rendertronMiddleWare.makeMiddleware({
       proxyUrl: smartexpressInstance.options.renderTronUrl,
-      userAgentPattern: new RegExp(botUserAgents.join('|'), 'i')
+      userAgentPattern: new RegExp(botUserAgents.join('|'), 'i'),
+      injectShadyDom: true
     })
   );
 };
