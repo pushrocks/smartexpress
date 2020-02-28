@@ -18,7 +18,6 @@ export interface IServerOptions {
   port?: number | string;
   publicKey?: string;
   privateKey?: string;
-  renderTronUrl?: string;
   robots?: 'off' | 'standard' | 'custom';
   domain?: string;
 }
