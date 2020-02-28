@@ -6,7 +6,6 @@ import { Handler } from './smartexpress.classes.handler';
 // export types
 import { Objectmap } from '@pushrocks/lik';
 import { Server as HttpServer } from 'http';
-import { setupRendertron } from './smartexpress.tools.rendertron';
 import { setupRobots } from './smartexpress.tools.robots';
 import { setupManifest } from './smartexpress.tools.manifest';
 import { Sitemap } from './smartexpress.classes.sitemap';
@@ -115,11 +114,6 @@ export class Server {
     // cors
     if (this.options.cors) {
       this.expressAppInstance.use(plugins.cors());
-    }
-
-    // rendertron
-    if (this.options.renderTronUrl) {
-      await setupRendertron(this);
     }
 
     // robots

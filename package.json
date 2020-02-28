@@ -37,7 +37,6 @@
     "express": "^4.17.1",
     "express-force-ssl": "^0.3.2",
     "helmet": "^3.21.2",
-    "rendertron-middleware": "^0.1.5",
     "sitemap": "^5.1.0"
   },
   "files": [
