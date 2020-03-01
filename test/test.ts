@@ -26,8 +26,7 @@ tap.test('should create a valid Server', async () => {
       name: 'Test App',
       short_name: 'testapp'
     },
-    robots: 'standard',
-    renderTronUrl: 'https://testing.git.zone/render'
+    robots: 'standard'
   });
   expect(testServer).to.be.instanceof(smartexpress.Server);
 });
