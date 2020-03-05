@@ -10,10 +10,11 @@ export { http, https, net, path };
 import * as lik from '@pushrocks/lik';
 import * as smartfile from '@pushrocks/smartfile';
 import * as smartmanifest from '@pushrocks/smartmanifest';
+import * as smartmime from '@pushrocks/smartmime';
 import * as smartpromise from '@pushrocks/smartpromise';
 import * as smartrequest from '@pushrocks/smartrequest';
 
-export { lik, smartfile, smartmanifest, smartpromise, smartrequest };
+export { lik, smartfile, smartmanifest, smartmime, smartpromise, smartrequest };
 
 // express
 import * as bodyParser from 'body-parser';

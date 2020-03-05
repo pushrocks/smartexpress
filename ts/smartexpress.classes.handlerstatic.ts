@@ -42,8 +42,10 @@ export class HandlerStatic extends Handler {
 
       // lets actually care about serving, if security checks pass
       let fileString: string;
+      let fileEncoding: 'binary' | 'utf8';
       try {
         fileString = plugins.smartfile.fs.toStringSync(joinedPath);
+        fileEncoding = plugins.smartmime.getEncoding(joinedPath);
       } catch (err) {
         res.writeHead(500);
         res.end('File not found!');
@@ -78,7 +80,7 @@ export class HandlerStatic extends Handler {
       }
 
       res.status(200);
-      res.write(fileString);
+      res.write(Buffer.from(fileString, fileEncoding));
       res.end();
     });
   }
