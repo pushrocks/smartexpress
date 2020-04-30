@@ -52,7 +52,7 @@ export class HandlerStatic extends Handler {
         // try serving index.html instead
         console.log(`could not resolve ${joinedPath}`);
         if (optionsArg && optionsArg.serveIndexHtmlDefault) {
-          console.log(`serving default path ${defaultPath} instead of ${joinedPath}`)
+          console.log(`serving default path ${defaultPath} instead of ${joinedPath}`);
           try {
             fileString = plugins.smartfile.fs.toStringSync(defaultPath);
             fileEncoding = plugins.smartmime.getEncoding(defaultPath);
@@ -66,7 +66,6 @@ export class HandlerStatic extends Handler {
           res.end('File not found!');
           return;
         }
-        
       }
 
       res.type(parsedPath.ext);
