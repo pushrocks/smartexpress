@@ -7,12 +7,29 @@ export class HandlerStatic extends Handler {
   constructor(
     pathArg: string,
     optionsArg?: {
+      requestModifier?: interfaces.TRequestModifier,
       responseModifier?: interfaces.TResponseModifier;
       headers?: { [key: string]: string };
       serveIndexHtmlDefault?: boolean;
     }
   ) {
     super('GET', async (req, res) => {
+      if (optionsArg && optionsArg.requestModifier) {
+        const modifiedRequest = await optionsArg.requestModifier({
+          headers: req.headers,
+          path: req.path,
+          requestContent: req.body
+        });
+
+        req.headers = modifiedRequest.headers;
+
+        req.path = modifiedRequest.path;
+
+        // responseContent
+        req.body = modifiedRequest.requestContent;
+      }
+
+
       // lets compute some paths
       let filePath: string = req.path.slice(req.route.path.length - 1);
       if (filePath === '') {
