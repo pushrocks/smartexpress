@@ -22,7 +22,7 @@ export class HandlerStatic extends Handler {
       console.log(filePath);
       const joinedPath = plugins.path.join(pathArg, filePath);
       const defaultPath = plugins.path.join(pathArg, 'index.html');
-      const parsedPath = plugins.path.parse(joinedPath);
+      let parsedPath = plugins.path.parse(joinedPath);
 
       // important security checks
       if (
@@ -54,6 +54,7 @@ export class HandlerStatic extends Handler {
         if (optionsArg && optionsArg.serveIndexHtmlDefault) {
           console.log(`serving default path ${defaultPath} instead of ${joinedPath}`);
           try {
+            parsedPath = plugins.path.parse(defaultPath);
             fileString = plugins.smartfile.fs.toStringSync(defaultPath);
             fileEncoding = plugins.smartmime.getEncoding(defaultPath);
           } catch (err) {
