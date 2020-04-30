@@ -9,6 +9,7 @@ export class HandlerStatic extends Handler {
     optionsArg?: {
       responseModifier?: interfaces.TResponseModifier;
       headers?: { [key: string]: string };
+      serveIndexHtmlDefault?: boolean;
     }
   ) {
     super('GET', async (req, res) => {
@@ -20,6 +21,7 @@ export class HandlerStatic extends Handler {
       }
       console.log(filePath);
       const joinedPath = plugins.path.join(pathArg, filePath);
+      const defaultPath = plugins.path.join(pathArg, 'index.html');
       const parsedPath = plugins.path.parse(joinedPath);
 
       // important security checks
@@ -47,9 +49,24 @@ export class HandlerStatic extends Handler {
         fileString = plugins.smartfile.fs.toStringSync(joinedPath);
         fileEncoding = plugins.smartmime.getEncoding(joinedPath);
       } catch (err) {
-        res.writeHead(500);
-        res.end('File not found!');
-        return;
+        // try serving index.html instead
+        console.log(`could not resolve ${joinedPath}`);
+        if (optionsArg && optionsArg.serveIndexHtmlDefault) {
+          console.log(`serving default path ${defaultPath} instead of ${joinedPath}`)
+          try {
+            fileString = plugins.smartfile.fs.toStringSync(defaultPath);
+            fileEncoding = plugins.smartmime.getEncoding(defaultPath);
+          } catch (err) {
+            res.writeHead(500);
+            res.end('File not found!');
+            return;
+          }
+        } else {
+          res.writeHead(500);
+          res.end('File not found!');
+          return;
+        }
+        
       }
 
       res.type(parsedPath.ext);

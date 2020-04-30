@@ -12,19 +12,6 @@ export class Sitemap {
   pagePackages: ISitePackage[] = [];
 
   public getSitemap(domainArg: string) {
-    const sitemap = plugins.sitemap.createSitemap({
-      hostname: `http://${domainArg}`,
-      cacheTime: 600000, // 600 sec - cache purge period
-      urls: (() => {
-        const urlArray = [];
-        for (const pagePackage of this.pagePackages) {
-          urlArray.push({
-            url: pagePackage.url,
-            changefreq: pagePackage.changeFreq
-          });
-        }
-        return urlArray;
-      })()
-    });
+    // implement sitemap
   }
 }
