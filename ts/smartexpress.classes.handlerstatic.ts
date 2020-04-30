@@ -14,6 +14,7 @@ export class HandlerStatic extends Handler {
     }
   ) {
     super('GET', async (req, res) => {
+      let travelData: unknown;
       if (optionsArg && optionsArg.requestModifier) {
         const modifiedRequest = await optionsArg.requestModifier({
           headers: req.headers,
@@ -27,6 +28,8 @@ export class HandlerStatic extends Handler {
 
         // responseContent
         req.body = modifiedRequest.requestContent;
+
+        travelData = modifiedRequest.travelData;
       }
 
 
@@ -95,7 +98,8 @@ export class HandlerStatic extends Handler {
         const modifiedResponse = await optionsArg.responseModifier({
           headers: res.getHeaders(),
           path: filePath,
-          responseContent: fileString
+          responseContent: fileString,
+          travelData
         });
 
         // headers
