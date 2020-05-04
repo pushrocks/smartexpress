@@ -14,10 +14,10 @@ export class HandlerStatic extends Handler {
     }
   ) {
     super('GET', async (req, res) => {
-      let travelData: unknown;
       let requestPath = req.path;
       let requestHeaders = req.headers;
       let requestBody = req.body;
+      let travelData: unknown;
       if (optionsArg && optionsArg.requestModifier) {
         const modifiedRequest = await optionsArg.requestModifier({
           headers: requestHeaders,
@@ -27,8 +27,6 @@ export class HandlerStatic extends Handler {
 
         requestHeaders = modifiedRequest.headers;
         requestPath = modifiedRequest.path;
-
-        // requestBody
         requestBody = modifiedRequest.requestContent;
         travelData = modifiedRequest.travelData;
       }

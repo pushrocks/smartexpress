@@ -6,6 +6,6 @@ export type TRequestModifier = <T>(responseArg: {
 }) => Promise<{
   headers: { [header: string]: string | string[] | undefined };
   path: string;
-  requestContent: string;
+  body: string;
   travelData?: T;
 }>;
