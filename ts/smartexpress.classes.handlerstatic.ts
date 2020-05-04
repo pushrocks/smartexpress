@@ -15,26 +15,27 @@ export class HandlerStatic extends Handler {
   ) {
     super('GET', async (req, res) => {
       let travelData: unknown;
+      let requestPath = req.path;
+      let requestHeaders = req.headers;
+      let requestBody = req.body;
       if (optionsArg && optionsArg.requestModifier) {
         const modifiedRequest = await optionsArg.requestModifier({
-          headers: req.headers,
-          path: req.path,
-          requestContent: req.body
+          headers: requestHeaders,
+          path: requestPath,
+          body: requestBody
         });
 
-        req.headers = modifiedRequest.headers;
+        requestHeaders = modifiedRequest.headers;
+        requestPath = modifiedRequest.path;
 
-        req.path = modifiedRequest.path;
-
-        // responseContent
-        req.body = modifiedRequest.requestContent;
-
+        // requestBody
+        requestBody = modifiedRequest.requestContent;
         travelData = modifiedRequest.travelData;
       }
 
 
       // lets compute some paths
-      let filePath: string = req.path.slice(req.route.path.length - 1);
+      let filePath: string = requestPath.slice(req.route.path.length - 1); // lets slice of the root
       if (filePath === '') {
         console.log('replaced root with index.html');
         filePath = 'index.html';
@@ -46,8 +47,8 @@ export class HandlerStatic extends Handler {
 
       // important security checks
       if (
-        req.path.includes('..') || // don't allow going up the filePath
-        req.path.includes('~') || // don't allow referencing of home directory
+        requestPath.includes('..') || // don't allow going up the filePath
+        requestPath.includes('~') || // don't allow referencing of home directory
         !joinedPath.startsWith(pathArg) // make sure the joined path is within the directory
       ) {
         res.writeHead(500);
