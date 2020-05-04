@@ -27,14 +27,13 @@ export class HandlerStatic extends Handler {
 
         requestHeaders = modifiedRequest.headers;
         requestPath = modifiedRequest.path;
-        requestBody = modifiedRequest.requestContent;
+        requestBody = modifiedRequest.body;
         travelData = modifiedRequest.travelData;
       }
 
-
       // lets compute some paths
       let filePath: string = requestPath.slice(req.route.path.length - 1); // lets slice of the root
-      if (filePath === '') {
+      if (requestPath === '') {
         console.log('replaced root with index.html');
         filePath = 'index.html';
       }
