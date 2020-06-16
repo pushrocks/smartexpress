@@ -6,6 +6,13 @@ import * as path from 'path';
 
 export { http, https, net, path };
 
+// apiglobal
+import * as typedrequest from '@apiglobal/typedrequest';
+
+export {
+  typedrequest
+};
+
 // pushrocks scope
 import * as lik from '@pushrocks/lik';
 import * as smartfile from '@pushrocks/smartfile';

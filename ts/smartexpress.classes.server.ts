@@ -4,8 +4,6 @@ import { Route } from './smartexpress.classes.route';
 import { Handler } from './smartexpress.classes.handler';
 
 // export types
-import { Objectmap } from '@pushrocks/lik';
-import { Server as HttpServer } from 'http';
 import { setupRobots } from './smartexpress.tools.robots';
 import { setupManifest } from './smartexpress.tools.manifest';
 import { Sitemap } from './smartexpress.classes.sitemap';
@@ -31,7 +29,7 @@ export type TServerStatus = 'initiated' | 'running' | 'stopped';
 export class Server {
   public httpServer: plugins.http.Server | plugins.https.Server;
   public expressAppInstance: plugins.express.Application;
-  public routeObjectMap = new plugins.lik.Objectmap<Route>();
+  public routeObjectMap = new plugins.lik.ObjectMap<Route>();
   public options: IServerOptions;
   public serverStatus: TServerStatus = 'initiated';
 
@@ -42,7 +40,7 @@ export class Server {
   // tslint:disable-next-line:member-ordering
   public startedPromise = this.startedDeferred.promise;
 
-  private socketMap = new plugins.lik.Objectmap<plugins.net.Socket>();
+  private socketMap = new plugins.lik.ObjectMap<plugins.net.Socket>();
 
   constructor(optionsArg: IServerOptions) {
     this.options = {
