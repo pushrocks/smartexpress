@@ -7,7 +7,7 @@ export class HandlerStatic extends Handler {
   constructor(
     pathArg: string,
     optionsArg?: {
-      requestModifier?: interfaces.TRequestModifier,
+      requestModifier?: interfaces.TRequestModifier;
       responseModifier?: interfaces.TResponseModifier;
       headers?: { [key: string]: string };
       serveIndexHtmlDefault?: boolean;
@@ -22,7 +22,7 @@ export class HandlerStatic extends Handler {
         const modifiedRequest = await optionsArg.requestModifier({
           headers: requestHeaders,
           path: requestPath,
-          body: requestBody
+          body: requestBody,
         });
 
         requestHeaders = modifiedRequest.headers;
@@ -97,7 +97,7 @@ export class HandlerStatic extends Handler {
           headers: res.getHeaders(),
           path: filePath,
           responseContent: fileString,
-          travelData
+          travelData,
         });
 
         // headers

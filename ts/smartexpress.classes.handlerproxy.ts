@@ -23,7 +23,7 @@ export class HandlerProxy extends Handler {
       try {
         proxiedResponse = await plugins.smartrequest.request(proxyRequestUrl, {
           method: req.method,
-          autoJsonParse: false
+          autoJsonParse: false,
         });
       } catch {
         res.end('failed to fullfill request');
@@ -51,7 +51,7 @@ export class HandlerProxy extends Handler {
         const modifiedResponse = await optionsArg.responseModifier({
           headers: res.getHeaders(),
           path: req.path,
-          responseContent: responseToSend
+          responseContent: responseToSend,
         });
 
         // headers

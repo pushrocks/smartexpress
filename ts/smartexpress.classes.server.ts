@@ -44,7 +44,7 @@ export class Server {
 
   constructor(optionsArg: IServerOptions) {
     this.options = {
-      ...optionsArg
+      ...optionsArg,
     };
   }
 
@@ -77,7 +77,7 @@ export class Server {
       this.httpServer = plugins.https.createServer(
         {
           key: this.options.privateKey,
-          cert: this.options.publicKey
+          cert: this.options.publicKey,
         },
         this.expressAppInstance
       );
@@ -100,7 +100,7 @@ export class Server {
       this.expressAppInstance.set('forceSSLOptions', {
         enable301Redirects: true,
         trustXFPHeader: true,
-        sslRequiredMessage: 'SSL Required.'
+        sslRequiredMessage: 'SSL Required.',
       });
       this.expressAppInstance.use(plugins.expressForceSsl);
     }
@@ -124,9 +124,9 @@ export class Server {
     }
 
     // set up routes in for express
-    await this.routeObjectMap.forEach(async routeArg => {
+    await this.routeObjectMap.forEach(async (routeArg) => {
       const expressRoute = this.expressAppInstance.route(routeArg.routeString);
-      routeArg.handlerObjectMap.forEach(async handler => {
+      routeArg.handlerObjectMap.forEach(async (handler) => {
         switch (handler.httpMethod) {
           case 'GET':
             expressRoute.get(handler.handlerFunction);
@@ -155,7 +155,7 @@ export class Server {
       });
     }
 
-    this.httpServer.on('connection', connection => {
+    this.httpServer.on('connection', (connection) => {
       this.socketMap.add(connection);
       connection.on('close', () => {
         this.socketMap.remove(connection);
@@ -183,7 +183,7 @@ export class Server {
         this.serverStatus = 'stopped';
         done.resolve();
       });
-      await this.socketMap.forEach(async socket => {
+      await this.socketMap.forEach(async (socket) => {
         socket.destroy();
       });
     } else {

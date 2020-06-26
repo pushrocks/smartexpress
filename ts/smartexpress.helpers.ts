@@ -5,7 +5,7 @@ export const redirectFrom80To443 = async () => {
   const smartexpressInstance = new smartexpress.Server({
     cors: true,
     forceSsl: true,
-    port: 80
+    port: 80,
   });
 
   smartexpressInstance.addRoute(

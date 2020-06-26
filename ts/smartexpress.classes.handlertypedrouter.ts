@@ -8,9 +8,7 @@ export class HandlerTypedRouter extends Handler {
    * The constuctor of HandlerProxy
    * @param remoteMountPointArg
    */
-  constructor(
-    typedrouter: plugins.typedrequest.TypedRouter
-  ) {
+  constructor(typedrouter: plugins.typedrequest.TypedRouter) {
     super('POST', async (req, res) => {
       const response = await typedrouter.routeAndAddResponse(req.body);
       res.json(response);

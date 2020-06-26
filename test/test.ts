@@ -24,9 +24,9 @@ tap.test('should create a valid Server', async () => {
     forceSsl: false,
     manifest: {
       name: 'Test App',
-      short_name: 'testapp'
+      short_name: 'testapp',
     },
-    robots: 'standard'
+    robots: 'standard',
   });
   expect(testServer).to.be.instanceof(smartexpress.Server);
 });
@@ -72,14 +72,14 @@ tap.test('should start the server allright', async () => {
 });
 
 // see if a demo request holds up
-tap.test('should issue a request', async tools => {
+tap.test('should issue a request', async (tools) => {
   const response = await smartrequest.postJson('http://localhost:3000/someroute', {
     headers: {
-      'X-Forwarded-Proto': 'https'
+      'X-Forwarded-Proto': 'https',
     },
     requestBody: {
-      someprop: 'hi'
-    }
+      someprop: 'hi',
+    },
   });
   console.log(response.body);
 });
