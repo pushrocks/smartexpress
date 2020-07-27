@@ -110,7 +110,9 @@ export class Server {
 
     // cors
     if (this.options.cors) {
-      this.expressAppInstance.use(plugins.cors());
+      this.expressAppInstance.use(plugins.cors({
+        allowedHeaders: ['Content-Type' ,'Authorization']
+      }));
     }
 
     // robots
