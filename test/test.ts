@@ -90,6 +90,13 @@ tap.test('should get a file from disk', async () => {
   console.log(response.headers);
 });
 
+tap.test('should answer a preflight request', async () => {
+  const response = await nodeFetch('http://localhost:3000/some/randompath/', {
+    method: 'OPTIONS'
+  });
+  console.log(response.headers);
+});
+
 // ========
 // clean up
 // ========

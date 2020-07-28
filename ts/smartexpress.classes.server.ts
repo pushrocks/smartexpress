@@ -111,7 +111,9 @@ export class Server {
     // cors
     if (this.options.cors) {
       const cors = plugins.cors({
-        allowedHeaders: ['content-type' ,'authorization'],
+        allowedHeaders: '*',
+        methods: '*',
+        origin: '*'
       });
       this.expressAppInstance.use(cors);
       this.expressAppInstance.options('/*', cors);
