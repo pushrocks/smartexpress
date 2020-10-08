@@ -61,7 +61,7 @@ export class Server {
     return route;
   }
 
-  public async start(portArg: number | string = this.options.port) {
+  public async start(portArg: number | string = this.options.port, doListen = true) {
     const done = plugins.smartpromise.defer();
 
     if (typeof portArg === 'string') {
@@ -169,17 +169,25 @@ export class Server {
     });
 
     // finally listen on a port
-    this.httpServer.listen(portArg, '0.0.0.0', () => {
-      console.log(`now listening on ${portArg}!`);
-      this.startedDeferred.resolve();
-      this.serverStatus = 'running';
-      done.resolve();
-    });
+    if (doListen) {
+      this.httpServer.listen(portArg, '0.0.0.0', () => {
+        console.log(`now listening on ${portArg}!`);
+        this.startedDeferred.resolve();
+        this.serverStatus = 'running';
+        done.resolve();
+      });
+    } else {
+      console.log('The server does not listen on a network stack and instead expects to get handed requests by other mechanics');
+    }
     return await done.promise;
   }
 
   public getHttpServer() {
     return this.httpServer;
+  }
+
+  public getExpressAppInstance() {
+    return this.expressAppInstance;
   }
 
   public async stop() {
