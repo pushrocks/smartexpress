@@ -113,7 +113,7 @@ export class Server {
       const cors = plugins.cors({
         allowedHeaders: '*',
         methods: '*',
-        origin: '*'
+        origin: '*',
       });
       this.expressAppInstance.use(cors);
       this.expressAppInstance.options('/*', cors);
@@ -177,7 +177,9 @@ export class Server {
         done.resolve();
       });
     } else {
-      console.log('The server does not listen on a network stack and instead expects to get handed requests by other mechanics');
+      console.log(
+        'The server does not listen on a network stack and instead expects to get handed requests by other mechanics'
+      );
     }
     return await done.promise;
   }
@@ -207,9 +209,9 @@ export class Server {
   }
 
   /**
-   * allows handling requests and responses that come from other 
+   * allows handling requests and responses that come from other
    * @param req
-   * @param res 
+   * @param res
    */
   public async handleReqRes(req: plugins.express.Request, res: plugins.express.Response) {
     this.expressAppInstance(req, res);

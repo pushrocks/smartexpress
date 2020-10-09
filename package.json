@@ -12,34 +12,34 @@
     "build": "(tsbuild --web)"
   },
   "devDependencies": {
-    "@gitzone/tsbuild": "^2.1.24",
+    "@gitzone/tsbuild": "^2.1.25",
     "@gitzone/tsrun": "^1.2.12",
-    "@gitzone/tstest": "^1.0.43",
+    "@gitzone/tstest": "^1.0.52",
     "@pushrocks/tapbundle": "^3.2.9",
-    "@types/node": "^14.0.26",
+    "@types/node": "^14.11.8",
     "@types/node-fetch": "^2.5.7",
-    "node-fetch": "^2.6.0",
-    "tslint": "^6.1.2",
+    "node-fetch": "^2.6.1",
+    "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@apiglobal/typedrequest": "^1.0.41",
+    "@apiglobal/typedrequest": "^1.0.53",
     "@pushrocks/lik": "^4.0.17",
-    "@pushrocks/smartfile": "^7.0.12",
+    "@pushrocks/smartfile": "^8.0.6",
     "@pushrocks/smartmanifest": "^1.0.8",
     "@pushrocks/smartmime": "^1.0.3",
     "@pushrocks/smartpromise": "^3.0.6",
-    "@pushrocks/smartrequest": "^1.1.47",
-    "@types/cors": "^2.8.6",
-    "@types/express": "^4.17.7",
+    "@pushrocks/smartrequest": "^1.1.51",
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.8",
     "@types/finalhandler": "^1.1.0",
-    "@types/helmet": "0.0.47",
+    "@types/helmet": "0.0.48",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-force-ssl": "^0.3.2",
-    "helmet": "^3.23.3",
-    "sitemap": "^6.2.0"
+    "helmet": "^4.1.1",
+    "sitemap": "^6.3.2"
   },
   "files": [
     "ts/**/*",
@@ -52,5 +52,8 @@
     "cli.js",
     "npmextra.json",
     "readme.md"
+  ],
+  "browserslist": [
+    "last 1 chrome versions"
   ]
 }
