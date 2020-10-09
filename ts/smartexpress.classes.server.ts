@@ -205,4 +205,13 @@ export class Server {
     }
     return await done.promise;
   }
+
+  /**
+   * allows handling requests and responses that come from other 
+   * @param req
+   * @param res 
+   */
+  public async handleReqRes(req: plugins.express.Request, res: plugins.express.Response) {
+    this.expressAppInstance(req, res);
+  }
 }
