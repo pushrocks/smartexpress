@@ -106,7 +106,9 @@ export class Server {
     }
 
     // helmet
-    this.expressAppInstance.use(plugins.helmet());
+    this.expressAppInstance.use(plugins.helmet({
+      contentSecurityPolicy: false
+    }));
 
     // cors
     if (this.options.cors) {
