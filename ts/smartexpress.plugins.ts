@@ -13,13 +13,23 @@ export { typedrequest };
 
 // pushrocks scope
 import * as lik from '@pushrocks/lik';
+import * as smartfeed from '@pushrocks/smartfeed';
 import * as smartfile from '@pushrocks/smartfile';
 import * as smartmanifest from '@pushrocks/smartmanifest';
 import * as smartmime from '@pushrocks/smartmime';
 import * as smartpromise from '@pushrocks/smartpromise';
 import * as smartrequest from '@pushrocks/smartrequest';
+import * as smartsitemap from '@pushrocks/smartsitemap';
+import * as smarttime from '@pushrocks/smarttime';
 
-export { lik, smartfile, smartmanifest, smartmime, smartpromise, smartrequest };
+export { lik, smartfeed, smartfile, smartmanifest, smartmime, smartpromise, smartrequest, smartsitemap, smarttime };
+
+// @tsclass scope
+import * as tsclass from '@tsclass/tsclass';
+
+export {
+  tsclass
+};
 
 // express
 import * as bodyParser from 'body-parser';
@@ -27,6 +37,5 @@ import cors from 'cors';
 import express from 'express';
 import * as expressForceSsl from 'express-force-ssl';
 import helmet from 'helmet';
-import * as sitemap from 'sitemap';
 
-export { bodyParser, cors, express, expressForceSsl, helmet, sitemap };
+export { bodyParser, cors, express, expressForceSsl, helmet };

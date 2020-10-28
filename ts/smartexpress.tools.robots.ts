@@ -16,6 +16,7 @@ Disallow: /account
 Disallow: /login
 
 Sitemap: https://${domainArg}/sitemap
+Sitemap: https://${domainArg}/sitemap-news
 `);
   });
 };

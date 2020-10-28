@@ -7,6 +7,7 @@ import { Handler } from './smartexpress.classes.handler';
 import { setupRobots } from './smartexpress.tools.robots';
 import { setupManifest } from './smartexpress.tools.manifest';
 import { Sitemap } from './smartexpress.classes.sitemap';
+import { Feed } from './smartexpress.classes.feed';
 
 export interface IServerOptions {
   cors: boolean;
@@ -33,7 +34,8 @@ export class Server {
   public options: IServerOptions;
   public serverStatus: TServerStatus = 'initiated';
 
-  public sitemap = new Sitemap();
+  public feed: Feed;
+  public sitemap: Sitemap;
 
   // do stuff when server is ready
   private startedDeferred = plugins.smartpromise.defer();
@@ -48,6 +50,10 @@ export class Server {
     };
   }
 
+  /**
+   * allows updating of server options
+   * @param optionsArg
+   */
   public updateServerOptions(optionsArg: IServerOptions) {
     Object.assign(this.options, optionsArg);
   }
@@ -130,6 +136,12 @@ export class Server {
     if (this.options.manifest) {
       await setupManifest(this.expressAppInstance, this.options.manifest);
     }
+
+    // sitemaps
+    this.sitemap = new Sitemap(this);
+
+    // feed
+    this.feed = new Feed(this);
 
     // set up routes in for express
     await this.routeObjectMap.forEach(async (routeArg) => {
