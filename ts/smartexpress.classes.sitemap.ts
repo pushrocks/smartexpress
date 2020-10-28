@@ -14,9 +14,9 @@ export class Sitemap {
    * handles the normal sitemap request
    */
   public sitemapHandler = new Handler('GET', async (req, res) => {
-    const sitemapXmlstring = await this.smartSitemap.createSitemapFromUrlInfoArray(this.urls);
+    const sitemapXmlString = await this.smartSitemap.createSitemapFromUrlInfoArray(this.urls);
     res.type('.xml');
-    res.write(sitemapXmlstring);
+    res.write(sitemapXmlString);
     res.end();
   });
 
