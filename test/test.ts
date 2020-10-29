@@ -26,7 +26,9 @@ tap.test('should create a valid Server', async () => {
       name: 'Test App',
       short_name: 'testapp',
     },
-    robots: 'standard',
+    feed: true,
+    sitemap: true,
+    robots: true,
   });
   expect(testServer).to.be.instanceof(smartexpress.Server);
 });

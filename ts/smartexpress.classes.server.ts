@@ -19,7 +19,7 @@ export interface IServerOptions {
   privateKey?: string;
   sitemap?: boolean;
   feed?: boolean;
-  robots?: 'off' | 'standard' | 'custom';
+  robots?: boolean;
   domain?: string;
 }
 
@@ -141,7 +141,7 @@ export class Server {
     }
 
     // robots
-    if (this.options.robots === 'standard' && this.options.domain) {
+    if (this.options.robots && this.options.domain) {
       await setupRobots(this.expressAppInstance, this.options.domain);
     }
 
