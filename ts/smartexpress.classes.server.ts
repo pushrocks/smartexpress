@@ -145,8 +145,10 @@ export class Server {
 
     // set up routes in for express
     await this.routeObjectMap.forEach(async (routeArg) => {
+      console.log(`"${routeArg.routeString}" maps to ${routeArg.handlerObjectMap.getArray().length} handlers`);
       const expressRoute = this.expressAppInstance.route(routeArg.routeString);
       routeArg.handlerObjectMap.forEach(async (handler) => {
+        console.log(` -> ${handler.httpMethod}`);
         switch (handler.httpMethod) {
           case 'GET':
             expressRoute.get(handler.handlerFunction);

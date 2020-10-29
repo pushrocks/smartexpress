@@ -38,8 +38,8 @@ export class Sitemap {
 
   constructor(smartexpressRefArg: Server) {
     this.smartexpressRef = smartexpressRefArg;
-    smartexpressRefArg.addRoute('/sitemap', this.sitemapHandler);
-    smartexpressRefArg.addRoute('/sitemap-news', this.sitemapNewsHandler);
+    this.smartexpressRef.addRoute('/sitemap', this.sitemapHandler);
+    this.smartexpressRef.addRoute('/sitemap-news', this.sitemapNewsHandler);
 
     // lets set the default url
     if (this.smartexpressRef.options.domain) {
