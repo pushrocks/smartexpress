@@ -30,7 +30,7 @@ export type TServerStatus = 'initiated' | 'running' | 'stopped';
 export class Server {
   public httpServer: plugins.http.Server | plugins.https.Server;
   public expressAppInstance: plugins.express.Application;
-  public routeObjectMap = new plugins.lik.ObjectMap<Route>();
+  public routeObjectMap = new Array<Route>();
   public options: IServerOptions;
   public serverStatus: TServerStatus = 'initiated';
 
@@ -63,7 +63,16 @@ export class Server {
     if (handlerArg) {
       route.addHandler(handlerArg);
     }
-    this.routeObjectMap.add(route);
+    this.routeObjectMap.push(route);
+    return route;
+  }
+
+  public addRouteBefore(routeStringArg: string, handlerArg?: Handler) {
+    const route = new Route(this, routeStringArg);
+    if (handlerArg) {
+      route.addHandler(handlerArg);
+    }
+    this.routeObjectMap.unshift(route);
     return route;
   }
 
