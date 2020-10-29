@@ -56,7 +56,7 @@ export class Sitemap {
    * @param urlsArg 
    */
   public replaceUrls(urlsArg: IUrlInfo[]) {
-    this.urls = urlsArg
+    this.urls = urlsArg;
   }
 
   /**

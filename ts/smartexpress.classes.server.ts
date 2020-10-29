@@ -17,6 +17,8 @@ export interface IServerOptions {
   port?: number | string;
   publicKey?: string;
   privateKey?: string;
+  sitemap?: boolean;
+  feed?: boolean;
   robots?: 'off' | 'standard' | 'custom';
   domain?: string;
 }
@@ -121,9 +123,11 @@ export class Server {
     }
 
     // helmet
-    this.expressAppInstance.use(plugins.helmet({
-      contentSecurityPolicy: false
-    }));
+    this.expressAppInstance.use(
+      plugins.helmet({
+        contentSecurityPolicy: false,
+      })
+    );
 
     // cors
     if (this.options.cors) {
@@ -147,14 +151,20 @@ export class Server {
     }
 
     // sitemaps
-    this.sitemap = new Sitemap(this);
+    if (this.options.sitemap) {
+      this.sitemap = new Sitemap(this);
+    }
 
-    // feed
-    this.feed = new Feed(this);
+    if (this.options.feed) {
+      // feed
+      this.feed = new Feed(this);
+    }    
 
     // set up routes in for express
     await this.routeObjectMap.forEach(async (routeArg) => {
-      console.log(`"${routeArg.routeString}" maps to ${routeArg.handlerObjectMap.getArray().length} handlers`);
+      console.log(
+        `"${routeArg.routeString}" maps to ${routeArg.handlerObjectMap.getArray().length} handlers`
+      );
       const expressRoute = this.expressAppInstance.route(routeArg.routeString);
       routeArg.handlerObjectMap.forEach(async (handler) => {
         console.log(` -> ${handler.httpMethod}`);
