@@ -102,7 +102,7 @@ tap.test('should answer a preflight request', async () => {
 tap.test('should exposer a sitemap', async () => {
   const response = await nodeFetch('http://localhost:3000/sitemap');
   console.log(await response.text());
-})
+});
 
 // ========
 // clean up

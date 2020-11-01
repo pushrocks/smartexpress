@@ -21,6 +21,8 @@ export interface IServerOptions {
   feed?: boolean;
   robots?: boolean;
   domain?: string;
+  feedMetadata?: plugins.smartfeed.IFeedOptions;
+  articleGetterFunction?: () => Promise<plugins.tsclass.content.IArticle[]>;
 }
 
 export type TServerStatus = 'initiated' | 'running' | 'stopped';

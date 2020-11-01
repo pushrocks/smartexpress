@@ -25,7 +25,7 @@
   "dependencies": {
     "@apiglobal/typedrequest": "^1.0.53",
     "@pushrocks/lik": "^4.0.17",
-    "@pushrocks/smartfeed": "^1.0.5",
+    "@pushrocks/smartfeed": "^1.0.7",
     "@pushrocks/smartfile": "^8.0.8",
     "@pushrocks/smartmanifest": "^1.0.8",
     "@pushrocks/smartmime": "^1.0.3",
@@ -33,7 +33,7 @@
     "@pushrocks/smartrequest": "^1.1.51",
     "@pushrocks/smartsitemap": "^1.0.11",
     "@pushrocks/smarttime": "^3.0.37",
-    "@tsclass/tsclass": "^3.0.26",
+    "@tsclass/tsclass": "^3.0.29",
     "@types/cors": "^2.8.8",
     "@types/express": "^4.17.8",
     "@types/finalhandler": "^1.1.0",
