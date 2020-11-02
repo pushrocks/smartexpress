@@ -44,7 +44,7 @@ export class Sitemap {
     // lets set the default url
     if (this.smartexpressRef.options.domain) {
       this.urls.push({
-        url: `https://${this.smartexpressRef.options.domain}`,
+        url: `https://${this.smartexpressRef.options.domain}/`,
         timestamp: Date.now() - plugins.smarttime.getMilliSecondsFromUnits({ hours: 2 }),
         frequency: 'daily',
       });
