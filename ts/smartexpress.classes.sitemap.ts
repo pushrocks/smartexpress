@@ -45,7 +45,7 @@ export class Sitemap {
     if (this.smartexpressRef.options.domain) {
       this.urls.push({
         url: `https://${this.smartexpressRef.options.domain}/`,
-        timestamp: Date.now() - plugins.smarttime.getMilliSecondsFromUnits({ hours: 2 }),
+        timestamp: Date.now(),
         frequency: 'daily',
       });
     }
