@@ -23,6 +23,7 @@ export interface IServerOptions {
   domain?: string;
   feedMetadata?: plugins.smartfeed.IFeedOptions;
   articleGetterFunction?: () => Promise<plugins.tsclass.content.IArticle[]>;
+  blockWaybackMachine?: boolean;
 }
 
 export type TServerStatus = 'initiated' | 'running' | 'stopped';
@@ -144,7 +145,7 @@ export class Server {
 
     // robots
     if (this.options.robots && this.options.domain) {
-      await setupRobots(this.expressAppInstance, this.options.domain);
+      await setupRobots(this, this.options.domain);
     }
 
     // manifest.json

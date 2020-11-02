@@ -1,10 +1,12 @@
 import * as plugins from './smartexpress.plugins';
+import { Server } from './smartexpress.classes.server';
+import { Handler } from './smartexpress.classes.handler';
 
 export const setupRobots = async (
-  expressAppInstanceArg: plugins.express.Application,
+  smartexpressRefArg: Server,
   domainArg: string
 ) => {
-  expressAppInstanceArg.get('/robots.txt', async (req, res) => {
+  smartexpressRefArg.addRouteBefore('/robots.txt', new Handler('GET', async (req, res) => {
     res.type('text/plain');
     res.send(`
 User-agent: Googlebot-News
@@ -15,8 +17,13 @@ User-agent: *
 Disallow: /account
 Disallow: /login
 
+${smartexpressRefArg.options.blockWaybackMachine ? `
+User-Agent: ia_archiver
+Disallow: /
+` : null}
+
 Sitemap: https://${domainArg}/sitemap
 Sitemap: https://${domainArg}/sitemap-news
 `);
-  });
+  }));
 };
