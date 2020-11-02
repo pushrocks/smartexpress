@@ -20,7 +20,7 @@ Disallow: /login
 ${smartexpressRefArg.options.blockWaybackMachine ? `
 User-Agent: ia_archiver
 Disallow: /
-` : null}
+` : ``}
 
 Sitemap: https://${domainArg}/sitemap
 Sitemap: https://${domainArg}/sitemap-news
