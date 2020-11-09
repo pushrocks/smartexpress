@@ -12,8 +12,18 @@ import { Feed } from './smartexpress.classes.feed';
 export interface IServerOptions {
   cors: boolean;
   defaultAnswer?: () => Promise<string>;
+  /**
+   * will try to reroute traffic to an ssl connection using headers
+   */
   forceSsl?: boolean;
+  /**
+   * allows serving manifests
+   */
   manifest?: plugins.smartmanifest.ISmartManifestConstructorOptions;
+  /**
+   * the port to listen on
+   * can be overwritten when actually starting the server
+   */
   port?: number | string;
   publicKey?: string;
   privateKey?: string;
@@ -21,6 +31,10 @@ export interface IServerOptions {
   feed?: boolean;
   robots?: boolean;
   domain?: string;
+  /**
+   * convey information about the app being served
+   */
+  appVersion?: string;
   feedMetadata?: plugins.smartfeed.IFeedOptions;
   articleGetterFunction?: () => Promise<plugins.tsclass.content.IArticle[]>;
   blockWaybackMachine?: boolean;
@@ -161,7 +175,20 @@ export class Server {
     if (this.options.feed) {
       // feed
       this.feed = new Feed(this);
-    }    
+    }
+    
+    // appVersion
+    if (this.options.appVersion) {
+      this.expressAppInstance.use((req, res, next) => {
+        res.set('appVersion', this.options.appVersion);
+        next();
+      });
+      this.addRoute('/appversion', new Handler('GET', async (req, res) => {
+        res.write(this.options.appVersion);
+        res.end();
+      }));
+    }
+    
 
     // set up routes in for express
     await this.routeObjectMap.forEach(async (routeArg) => {

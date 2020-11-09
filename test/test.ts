@@ -22,6 +22,7 @@ tap.test('should create a valid Server', async () => {
     cors: true,
     domain: 'testing.git.zone',
     forceSsl: false,
+    appVersion: 'v3.2.1',
     manifest: {
       name: 'Test App',
       short_name: 'testapp',
