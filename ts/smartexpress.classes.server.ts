@@ -180,7 +180,7 @@ export class Server {
     // appVersion
     if (this.options.appVersion) {
       this.expressAppInstance.use((req, res, next) => {
-        res.set('appVersion', this.options.appVersion);
+        res.set('appversion', this.options.appVersion);
         next();
       });
       this.addRoute('/appversion', new Handler('GET', async (req, res) => {
