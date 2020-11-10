@@ -30,6 +30,6 @@ export class Feed {
 
   constructor(smartexpressRefArg: Server) {
     this.smartexpressRef = smartexpressRefArg;
-    this.smartexpressRef.addRoute('/feed', this.feedHandler);
+    this.smartexpressRef.addRouteBefore('/feed', this.feedHandler);
   }
 }
