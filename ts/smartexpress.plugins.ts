@@ -22,14 +22,22 @@ import * as smartrequest from '@pushrocks/smartrequest';
 import * as smartsitemap from '@pushrocks/smartsitemap';
 import * as smarttime from '@pushrocks/smarttime';
 
-export { lik, smartfeed, smartfile, smartmanifest, smartmime, smartpromise, smartrequest, smartsitemap, smarttime };
+export {
+  lik,
+  smartfeed,
+  smartfile,
+  smartmanifest,
+  smartmime,
+  smartpromise,
+  smartrequest,
+  smartsitemap,
+  smarttime,
+};
 
 // @tsclass scope
 import * as tsclass from '@tsclass/tsclass';
 
-export {
-  tsclass
-};
+export { tsclass };
 
 // express
 import * as bodyParser from 'body-parser';

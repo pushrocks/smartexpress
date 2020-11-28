@@ -176,19 +176,21 @@ export class Server {
       // feed
       this.feed = new Feed(this);
     }
-    
+
     // appVersion
     if (this.options.appVersion) {
       this.expressAppInstance.use((req, res, next) => {
         res.set('appversion', this.options.appVersion);
         next();
       });
-      this.addRoute('/appversion', new Handler('GET', async (req, res) => {
-        res.write(this.options.appVersion);
-        res.end();
-      }));
+      this.addRoute(
+        '/appversion',
+        new Handler('GET', async (req, res) => {
+          res.write(this.options.appVersion);
+          res.end();
+        })
+      );
     }
-    
 
     // set up routes in for express
     await this.routeObjectMap.forEach(async (routeArg) => {
