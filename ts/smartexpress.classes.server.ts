@@ -121,7 +121,7 @@ export class Server {
     this.httpServer.keepAliveTimeout = 61000;
     this.httpServer.headersTimeout = 65000;
 
-    this.expressAppInstance.use(plugins.bodyParser.json()); // for parsing application/json
+    this.expressAppInstance.use(plugins.bodyParser.json({limit: 100000000})); // for parsing application/json
     this.expressAppInstance.use(plugins.bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
     this.expressAppInstance.use((req, res, next) => {
       req.setTimeout(10000, () => {
