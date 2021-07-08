@@ -26,7 +26,7 @@ export class Route {
    * add a express middleware
    * @param middlewareArg
    */
-  public addExpressMiddleWare(middlewareArg) {
+  public addExpressMiddleWare(middlewareArg: plugins.express.Application) {
     this.expressMiddlewareObjectMap.add(middlewareArg);
   }
 }

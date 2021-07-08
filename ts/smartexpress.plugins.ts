@@ -43,7 +43,8 @@ export { tsclass };
 import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
-import * as expressForceSsl from 'express-force-ssl';
+// @ts-ignore
+import expressForceSsl from 'express-force-ssl';
 import helmet from 'helmet';
 
 export { bodyParser, cors, express, expressForceSsl, helmet };
